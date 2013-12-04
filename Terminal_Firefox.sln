@@ -1,0 +1,20 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Terminal_Firefox", "Terminal_Firefox\Terminal_Firefox.csproj", "{3C70C5AA-0A2F-43F3-AEAD-D96211990D3F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3C70C5AA-0A2F-43F3-AEAD-D96211990D3F}.Debug|x86.ActiveCfg = Debug|x86
+		{3C70C5AA-0A2F-43F3-AEAD-D96211990D3F}.Debug|x86.Build.0 = Debug|x86
+		{3C70C5AA-0A2F-43F3-AEAD-D96211990D3F}.Release|x86.ActiveCfg = Release|x86
+		{3C70C5AA-0A2F-43F3-AEAD-D96211990D3F}.Release|x86.Build.0 = Release|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
