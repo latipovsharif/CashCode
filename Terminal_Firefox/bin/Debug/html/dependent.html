@@ -1,0 +1,29 @@
+<!DOCUMENT html>
+<html>
+	<head>
+        <title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript" src="js/ejs/ejs_production.js"></script>
+		<script type="text/javascript" src="js/data/services.js"></script>
+	</head>
+	
+	<body>
+
+		<embed class="top-ad" src="ads/1.swf" />
+		
+		<div class="margins" id="dependent"></div>
+
+        <div class="navigation">
+            <a href="index.html" class="centerBtn"><img src="ru/button_back.png" alt="Назад"/></a>
+        </div>
+	</body>
+
+	<script type="text/javascript">
+	    var html = new EJS({ url: 'templates/dependent.ejs' }).render(dependent);
+	    document.getElementById('dependent').innerHTML = html;
+	</script>
+
+</html>

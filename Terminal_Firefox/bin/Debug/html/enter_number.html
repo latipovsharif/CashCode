@@ -1,0 +1,163 @@
+<!DOCUMENT html>
+<html>
+	<head>
+        <title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+		<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript" src="js/jquery.js"></script>
+
+	</head>
+	
+	<body>
+
+		<embed class="top-ad" src="ads/1.swf" />
+
+        <div>
+            <table>
+                <tr>
+                    <td>
+                        <input type="text" id="number" class="bordered enter-number" />
+                    </td>
+                    <td>
+                        <img src="images/buttons/pad_10.png" id="10" alt="" onmousedown="mouseDown(this)"
+                             onmouseup="mouseUp(this)" onclick="backspace()" height="91" width="111" />
+                    </td>
+                    <td>
+                        <img src="images/buttons/pad_11.png" id="11" alt="" onmousedown="mouseDown(this)"
+                             onmouseup="mouseUp(this)" onclick="clr()" height="91" width="111" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+		<div class="bordered left-banner">
+
+        </div>
+		
+        <div class="nums" id="nums">
+            <table>
+                <tr>
+                    <td>
+                        <img src="images/buttons/pad_1.png" id="1" alt="" onmousedown="mouseDown(this)"
+                            onmouseup="mouseUp(this)" onclick="validate(this)" height="111" width="181" />
+                    </td>
+                    <td>
+                        <img src="images/buttons/pad_2.png" id="2" alt="" onmousedown="mouseDown(this)"
+                            onmouseup="mouseUp(this)" onclick="validate(this)" height="111" width="181"/>
+                    </td>
+                    <td>
+                        <img src="images/buttons/pad_3.png" id="3" alt="" onmousedown="mouseDown(this)"
+                            onmouseup="mouseUp(this)" onclick="validate(this)" height="111" width="181"/>
+                    </td>
+                </tr>
+                <tr>
+
+                    <td>
+                        <img src="images/buttons/pad_4.png" id="4" alt="" onmousedown="mouseDown(this)"
+                            onmouseup="mouseUp(this)" onclick="validate(this)" height="111" width="181"/>
+                    </td><td>
+                        <img src="images/buttons/pad_5.png" id="5" alt="" onmousedown="mouseDown(this)"
+                            onmouseup="mouseUp(this)" onclick="validate(this)" height="111" width="181"/>
+                    </td><td width="181">
+                        <img src="images/buttons/pad_6.png" id="6" alt="" onmousedown="mouseDown(this)"
+                            onmouseup="mouseUp(this)" onclick="validate(this)" height="111" width="181"/>
+                    </td>
+
+                </tr>
+                <tr>
+                    <td>
+                        <img src="images/buttons/pad_7.png" id="7" alt="" onmousedown="mouseDown(this)"
+                            onmouseup="mouseUp(this)" onclick="validate(this)" height="111" width="181"/>
+                    </td>
+                    <td>
+                        <img src="images/buttons/pad_8.png" id="8" alt="" onmousedown="mouseDown(this)"
+                                onmouseup="mouseUp(this)" onclick="validate(this)" height="111" width="181"/>
+                    </td>
+                    <td>
+                        <img src="images/buttons/pad_9.png" id="9" alt="" onmousedown="mouseDown(this)"
+                                onmouseup="mouseUp(this)" onclick="validate(this)" height="111" width="181"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>&nbsp;</td>
+                    <td>
+                        <img src="images/buttons/pad_0.png" id="0" alt="" onmousedown="mouseDown(this)"
+                                onmouseup="mouseUp(this)" onclick="validate(this)" height="111" width="181"/>
+                    </td>
+                    <td>&nbsp;</td>
+
+                </tr>
+            </table>
+        </div>
+
+		<div class="bordered right-banner" id="Div2">
+        
+        </div>
+
+        <div class="navigation">
+            <a href="dependent.html" class="leftBtn"><img src="ru/button_back.png" alt="Назад"/></a>
+            <a href="pay.html" class="rightBtn"><img src="ru/button_next.png" alt="Далее"/></a>
+        </div>
+	</body>
+
+    <script>
+
+        var number = "";
+        var mask = "";
+        var maskLen = 0;
+
+        $( document ).ready(function() {
+            setMask("92-***-**-**");
+        });
+
+        function setMask(_mask) {
+            mask = _mask;
+            number = mask;
+            maskLen = number.indexOf("*");
+            $("#number").val(mask);
+        }
+
+        function validate(btn){
+            var pos = findAsteriskPos();
+            if (pos != -1){
+                number = number.replaceAt(pos, btn.id);
+            }
+            $("#number").val(number);
+        }
+
+        function findAsteriskPos(){
+            for(var i = 0; i < number.length; i++ ){
+                if (number.charAt(i) === '*'){
+                    return i;
+                }
+            }
+            return -1;
+        }
+
+        String.prototype.replaceAt=function(index, character) {
+            return this.substr(0, index) + character + this.substr(index+character.length);
+        }
+
+        function backspace() {
+            var numLen = number.length;
+            var asteriskPos = number.indexOf("*");
+
+            if (maskLen < (asteriskPos) || asteriskPos === -1){
+                if(asteriskPos === -1 && number.charAt(numLen - 1) !== '-'){
+                    number = number.replaceAt(numLen - 1, '*');
+                } else if (asteriskPos >= 0 && number.charAt(asteriskPos - 1) !== '-'){
+                    number = number.replaceAt(asteriskPos - 1, '*');
+                } else if (asteriskPos >= 0 && number.charAt(asteriskPos -1) === '-'){
+                    number = number.replaceAt(asteriskPos - 2, '*');
+                }
+            }
+            $("#number").val(number);
+        }
+
+        function clr() {
+            number = mask;
+            $("#number").val(number);
+        }
+
+    </script>
+</html>

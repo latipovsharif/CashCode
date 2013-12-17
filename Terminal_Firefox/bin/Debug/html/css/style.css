@@ -1,0 +1,137 @@
+body {
+	margin: 0;			
+}
+
+.top-ad {
+	width: 100%;
+	height: 350px;
+}
+
+.margins {
+	margin-top: 20px;
+	margin-left: 10px;
+ }
+
+.top-services {
+	width: 1258px;
+}
+
+.top-img {
+	margin: 3px;
+}
+
+.main-services {
+	width: 1130px;
+}
+
+.footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 40px;
+	background-color: yellow;
+}
+
+.languages {
+	width: 115px;
+	position: absolute;
+	right: 0;
+	top: 525px;
+	margin-right: 10px;
+}
+
+.lang-btn {
+	margin-bottom: 20px;
+}
+
+.rightBtn 
+{
+    margin-right: 30px;
+    float: right;
+}
+
+.leftBtn 
+{
+    margin-left: 30px;
+    float:left;
+}
+
+.navigation 
+{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    z-index: -10;
+}
+
+.centerBtn
+{
+    margin-left: 530px;
+}
+
+.nums 
+{
+    position: fixed;
+    left: 50%;
+    top: 80%;
+    height: 460px;
+    margin-top: -300px;
+    width: 560px;
+    margin-left: -280px;
+}
+    
+.bordered
+{
+    border-radius: 20px;
+    border: 3px solid purple;
+}
+
+.left-banner 
+{
+    position: fixed;
+    left: 30px;
+    top: 470px;
+    width: 300px;
+    height: 400px;
+}
+
+.right-banner
+{
+    position: fixed;
+    right: 30px;
+    top: 470px;
+    width: 300px;
+    height: 400px;
+}
+
+.label 
+{
+    background: #fff;
+    width: 270px;
+    height: 50px;
+}
+
+.enter-number {
+    margin-top: 20px;
+    margin-left: 240px;
+    width: 800px;
+    height: 80px; 
+    font-weight: bold; 
+    font-size: 72px; 
+    text-align: center;
+    color: #59408D;
+}
+
+.show-number {
+    margin-top: 20px;
+    margin-left: 240px;
+    width: 800px;
+    height: 80px;
+    font-weight: bold;
+    font-size: 72px;
+    text-align: center;
+    color: #59408D;
+    display: block;
+}

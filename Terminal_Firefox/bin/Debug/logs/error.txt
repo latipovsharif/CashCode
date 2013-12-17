@@ -1,0 +1,1 @@
+12/10/2013 13:08:20|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException

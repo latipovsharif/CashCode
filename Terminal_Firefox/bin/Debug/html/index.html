@@ -1,0 +1,48 @@
+<!DOCUMENT html>
+<html>
+	<head>
+        <title></title>
+		<link rel="stylesheet" type="text/css" href="css/style.css" />
+
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript" src="js/script.js"></script>
+		<script type="text/javascript" src="js/ejs/ejs_production.js"></script>
+		<script type="text/javascript" src="js/data/services.js"></script>
+	</head>
+	
+	<body>
+
+		<embed class="top-ad" src="ads/1.swf" />
+		
+		<form action="dependent.html">
+
+			<div class="top-services margins" id="top-services">
+                <!-- This div is filed by ../templates/template.ejs -->
+			</div>
+
+			<div class="main-services margins" id="main-services">
+                <!-- This div is filed by ../templates/main.ejs -->
+			</div>
+
+			<div class="languages">
+				<img src="images/button_rus.png" class="lang-btn" id="13" name="language-btn" onmousedown="mouseDown(this);" onmouseup="mouseUp(this);" alt="" />
+				<img src="images/button_rus.png" class="lang-btn" id="14" name="language-btn" onmousedown="mouseDown(this);" onmouseup="mouseUp(this);" alt="" />
+				<img src="images/button_rus.png" class="lang-btn" id="15" name="language-btn" onmousedown="mouseDown(this);" onmouseup="mouseUp(this);" alt="" />
+			</div>
+
+			<div class="footer">
+				
+			</div>
+			
+		</form>
+	</body>
+
+	<script type="text/javascript">
+		var html = new EJS({url: 'templates/template.ejs'}).render(services);
+		document.getElementById('top-services').innerHTML = html;
+
+		var html1 = new EJS({url: 'templates/main.ejs'}).render(main);
+		document.getElementById('main-services').innerHTML = html1;		
+	</script>
+
+</html>
