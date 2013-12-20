@@ -73,3 +73,4 @@
 12/17/2013 09:36:13|Info|Запуск приложения...|Terminal_Firefox.Program.Main
 12/17/2013 09:41:27|Info|Запуск приложения...|Terminal_Firefox.Program.Main
 12/17/2013 11:14:10|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+12/20/2013 08:59:00|Info|Запуск приложения...|Terminal_Firefox.Program.Main
