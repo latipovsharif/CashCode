@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title></title>
+    <script src="../js/jquery.js"></script>
+    <script src="../js/masked-input.js"></script>
+    <script src="../js/script.js"></script>
+
+</head>
+
+
+
+<body>
+<input type="text" id="txt" onchange="fnc(this)"/>
+<input type="button" id="1" value="1" onclick="validate(this)"/>
+<input type="button" id="2" value="2" onclick="validate(this)" />
+<input type="button" id="3" value="3" onclick="validate(this)" />
+<input type="button" id="4" value="4" onclick="validate(this)" />
+<input type="button" id="5" value="5" onclick="validate(this)" />
+<input type="button" id="6" value="6" onclick="validate(this)" />
+<input type="button" id="7" value="7" onclick="validate(this)" />
+<input type="button" id="8" value="8" onclick="validate(this)" />
+<input type="button" id="9" value="9" onclick="validate(this)" />
+<input type="button" id="0" value="0" onclick="validate(this)" />
+<input type="button" id="11" value="backspace" onclick="backspace()" />
+<input type="button" id="12" value="clear" onclick="clr()" />
+<input type="button" id="bnt" value="next" disabled="true">
+
+</body>
+   <script>
+
+       var number = "926-***--**-**";
+       var mask = "926-***--**-**";
+       var type = "num";
+
+
+       function validate(btn){
+           var pos = findAsteriskPos();
+           if (pos != -1){
+                number = number.replaceAt(pos, btn.id);
+           }
+           $("#txt").val(number);
+       }
+
+       function findAsteriskPos(){
+           for(var i = 0; i < number.length; i++ ){
+                if (number.charAt(i) === '*'){
+                    return i;
+                }
+           }
+           return -1;
+       }
+
+       String.prototype.replaceAt=function(index, character) {
+           return this.substr(0, index) + character + this.substr(index+character.length);
+       }
+
+       var maskLen = number.indexOf("*");
+
+       function backspace() {
+           var numLen = number.length;
+           var asteriskPos = number.indexOf("*");
+
+           if (maskLen < (asteriskPos) || asteriskPos === -1){
+               if(asteriskPos === -1 && number.charAt(numLen - 1) !== '-'){
+                   number = number.replaceAt(numLen - 1, '*');
+               } else if (asteriskPos >= 0 && number.charAt(asteriskPos - 1) !== '-'){
+                   number = number.replaceAt(asteriskPos - 1, '*');
+               } else if (asteriskPos >= 0 && number.charAt(asteriskPos -1) === '-'){
+                   number = number.replaceAt(asteriskPos - 2, '*');
+               }
+           }
+           $("#txt").val(number);
+       }
+
+        function clr() {
+               number = mask;
+               $("#txt").val(number);
+        }
+
+   </script>
+
+</html>

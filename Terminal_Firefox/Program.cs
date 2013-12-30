@@ -24,11 +24,10 @@ namespace Terminal_Firefox
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.ThreadException += new System.Threading.ThreadExceptionEventHandler(ApplicationThreadException);
-            AppDomain.CurrentDomain.UnhandledException +=
-                new UnhandledExceptionEventHandler(CurrentDomainUnhandledException);
+            Application.ThreadException += ApplicationThreadException;
+            AppDomain.CurrentDomain.UnhandledException += CurrentDomainUnhandledException;
 
-            Application.Run(new Form1());
+            Application.Run(new MainWindow());
         }
 
         private static void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)

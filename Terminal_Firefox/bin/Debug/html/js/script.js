@@ -27,3 +27,4 @@ function goEnterNumber() {
     window.location = "enter_number.html";
 }
 /* Animate button click */
+

@@ -1,133 +1,85 @@
 ﻿using System;
 using System.IO.Ports;
 using System.Threading;
+using System.Configuration;
+using NLog;
 
 namespace Terminal_Firefox.peripheral {
     public class CashCode {
-        //готовые покеты
-        private readonly byte[] _conReAck =  { 0x02, 0x03, 0x06, 0x00, 0xC2, 0x82 };
-        private readonly byte[] _conReset =  { 0x02, 0x03, 0x06, 0x30, 0x41, 0xB3 };
-        //private readonly byte[] _conGetSt =  { 0x02, 0x03, 0x06, 0x31, 0xC8, 0xA2 };
-        private readonly byte[] _conStPoll = { 0x02, 0x03, 0x06, 0x33, 0xDA, 0x81 };
-        //private readonly byte[] _conIdent =  { 0x02, 0x03, 0x06, 0x37, 0xFE, 0xC7 };
-        //private readonly byte[] _conGetBt =  { 0x02, 0x03, 0x06, 0x41, 0x4F, 0xD1 };
-        //private readonly byte[] _conStack =  { 0x02, 0x03, 0x06, 0x35, 0xEC, 0xE4 };
-        //private readonly byte[] _conReturn = { 0x02, 0x03, 0x06, 0x36, 0x77, 0xD6 };
-        //private readonly byte[] _conHold =   { 0x02, 0x03, 0x06, 0x38, 0x09, 0x3F };
-        //private readonly byte[] _conExtBd =  { 0x02, 0x03, 0x06, 0x3A, 0x1B, 0x1C };
-        //private readonly byte[] _conReqSt =  { 0x02, 0x03, 0x06, 0x60, 0xC4, 0xE1 };
-        private readonly byte[] _conEnBt =   { 0x02, 0x03, 0x0C, 0x34, 0xFF, 0xFF, 0xFF, 0x00, 0x00, 0x00, 0xB5, 0xC1 };
-        //private readonly byte[] _conDiBt =   { 0x02, 0x03, 0x0C, 0x34, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x17, 0x0C };
-        
-        //интервалы ожидания
-        //private int _readIntervalTimeout = 400;
-        //private int _readTotalTimeoutMultiplier = 0;
-        //private int _readTotalTimeoutConstant = 400;
-        //private int _writeTotalTimeoutMultiplier = 0;
-        private const int WriteTotalTimeoutConstant = 30;
 
-        //номиналы купюр
-        public const byte B1 = 1;     // 0 0 0 0 0 0 0 1
-        public const byte B3 = 2;     // 0 0 0 0 0 0 1 0
-        public const byte B5 = 4;     // 0 0 0 0 0 1 0 0
-        public const byte B10 = 8;    // 0 0 0 0 1 0 0 0
-        public const byte B20 = 16;   // 0 0 0 1 0 0 0 0 
-        public const byte B50 = 32;   // 0 0 1 0 0 0 0 0
-        public const byte B100 = 64;  // 0 1 0 0 0 0 0 0
-        public const byte B200 = 128; // 1 0 0 0 0 0 0 0 
-        
-        //переменная для ответа 
-        private byte[] _aAnswer;
-        
-        //идентификатор запуска
-        private int _sum;
-        
-        //хендлер сом порта
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
         private readonly SerialPort _port;
-        private const int POLYNOMIAL = 0x08408;
-        private string _msg;
+        private const int POLYNOMIAL = 0x08408; // CRC 
+        private bool _flag = true; // Enabling and disabling polling
+        private bool _newCommand;
+        private byte[] _command;
+
+        /* CONSTANTS FOR BIL VALIDATOR */
+
+        private const byte Sync = 0x02;
+        private const byte DeviceType = 0x03;
+
+        /* CONSTANTS FOR BIL VALIDATOR */
+
 
         public CashCode() {
-            _port = new SerialPort("com1", 9600, Parity.None, 8, StopBits.One);
-            _port.Open();
-            _port.WriteTimeout = 400;
-            _port.ReadTimeout = 400;
-        }
-
-        public void Reset() {
-            SendPacketInPort(_conReset);
-        }
-
-        public void ClosePort() {
-            _port.Close();
-        }
-
-        public void OpenPort() {
-            if (_port.IsOpen) return;
-            _port.Open();
-            _port.WriteTimeout = 400;
-            _port.ReadTimeout = 400;
-        }
-
-        public void ConEnBTMethod() {
-            SendPacketInPort(_conEnBt);
-        }
-
-        public String[] MoneyPoll() {
-            _sum = 0;
-            _msg = "";
-
-            SendPacketInPort(_conStPoll);
-            if (ReadPort(out _aAnswer)) {
-                if (_aAnswer[2] == 7) {
-                    Status(_aAnswer[3], _aAnswer[4], out _sum, out _msg);
-                    if (_sum > 0) {
-                        SendPacketInPort(_conReAck);
-
-                        return new String[2] { _sum.ToString(), _msg };
-                    }
-                }
-            } else {
-                Reset();
-            }
-
-            return new String[2] { "", _msg };
-        }
-
-
-        //#############################################################\\
-        protected bool SendPacketInPort(byte[] aPacket) {
             try {
-                _port.WriteTimeout = WriteTotalTimeoutConstant;
-                _port.DiscardOutBuffer();
-                _port.Write(aPacket, 0, aPacket.Length);
+                Log.Info("Открывает порт");
+                _port = new SerialPort(ConfigurationManager.AppSettings["com"], 9600, Parity.None, 8, StopBits.One);
+                _port.Open();
+                _port.WriteTimeout = 400;
+                _port.ReadTimeout = 400;
             }
-            catch (Exception) {
-                return false;
+            catch (Exception ex) {
+                Log.Fatal(String.Format("Невозможно открыть порт {0}", ConfigurationManager.AppSettings["com"]), ex);
             }
-            return true;
         }
 
-        //#############################################################\\
-        protected bool ReadPort(out byte[] aAnswer) {
-            Thread.Sleep(300);
-            aAnswer = new byte[_port.BytesToRead];
-            try {
-                _port.Read(aAnswer, 0, aAnswer.Length);
-            }
-            catch (Exception) {
-                return false;
-            }
+        private byte[] PrepareCommand(CashCodeCommands command) {
+            const byte dataLength = 0x06;
+            byte[] preparedCommand = {Sync, DeviceType, dataLength, (byte) command, 0x00, 0x00};
+            char crc = CalculateCrc(preparedCommand, 4);
 
-            return true;
+            preparedCommand[4] = (byte) crc;
+            crc = CalculateCrc(preparedCommand, 5);
+            preparedCommand[5] = (byte) crc;
+            return preparedCommand;
         }
 
+        private byte[] PrepareLongCommand(CashCodeCommands command, byte first, byte last) {
+            const byte dataLength = 0x0C;
 
-        public static char CalculateCrc16(byte[] data) {
+            byte[] preparedCommand = {
+                                         Sync, DeviceType, dataLength, (byte) command, first, first, first, last, last,
+                                         last, 0x00, 0x00
+                                     };
+            char crc = CalculateCrc(preparedCommand, 10);
+
+            preparedCommand[10] = (byte) crc;
+            crc = CalculateCrc(preparedCommand, 11);
+            preparedCommand[11] = (byte) crc;
+            return preparedCommand;
+        }
+
+        public void StartPolling() {
+            byte[] preparedCommand = PrepareCommand(CashCodeCommands.Poll);
+            while (_flag) {
+                WriteToPort(preparedCommand);
+                var bytes = ReadFromPort();
+                ParseMessage(bytes);
+                if (!_newCommand) continue;
+                WriteToPort(_command);
+                bytes = ReadFromPort();
+                ParseMessage(bytes);
+                _newCommand = false;
+            }
+        }
+
+        private static char CalculateCrc(byte[] data, int length) {
             char crc = (char) 0x0000;
-            int count = (data[2] - 2);
-            if (count < 4) return (char) 0;
-            for (int i = 0; i < count; i++) {
+            if (length < 4) return (char) 0;
+            for (int i = 0; i < length; i++) {
                 crc ^= (char) data[i];
                 for (int j = 0; j < 8; j++) {
                     if ((crc & 0x0001) == 1) {
@@ -140,204 +92,227 @@ namespace Terminal_Firefox.peripheral {
             return crc;
         }
 
-
-        public bool Status(byte first, byte second, out int money, out string msg) {
-            switch (first) {
-                case 0x10:
-                case 0x11:
-                case 0x12:
-                    msg = "Включение питания после команд";
-                    money = 0;
-                    return false;
-                case 0x13:
-                    msg = "Инициализация";
-                    money = 0;
-                    return false;
-                case 0x14:
-                    msg = "Ожидание приема купюры";
-                    money = 0;
-                    return false;
-                case 0x15:
-                    msg = "Акцепт";
-                    money = 0;
-                    return false;
-                case 0x19:
-                    msg = "Недоступен, ожидаю инициализации";
-                    money = 0;
-                    return false;
-                case 0x41:
-                    msg = "Полная кассета";
-                    money = 0;
-                    return false;
-                case 0x42:
-                    msg = "Кассета отсутствует";
-                    money = 0;
-                    return false;
-                case 0x43:
-                    msg = "Замяло купюру";
-                    //reset
-                    money = 0;
-                    return false;
-                case 0x44:
-                    msg = "Замяло касету 0_o";
-                    //reset
-                    money = 0;
-                    return false;
-                case 0x45:
-                    msg = "КАРАУЛ !!!! ЖУЛИКИ !!!";
-                    //reset
-                    money = 0;
-                    return false;
-                case 0x47:
-                    switch (second) {
-                        case 0x50:
-                            msg = "Stack_motor_falure";
-                            money = 0;
-                            return false;
-                        case 0x51:
-                            msg = "Transport_speed_motor_falure";
-                            money = 0;
-                            return false;
-                        case 0x52:
-                            msg = "Transport-motor_falure";
-                            money = 0;
-                            return false;
-                        case 0x53:
-                            msg = "Aligning_motor_falure";
-                            money = 0;
-                            return false;
-                        case 0x54:
-                            msg = "Initial_cassete_falure";
-                            money = 0;
-                            return false;
-                        case 0x55:
-                            msg = "Optical_canal_falure";
-                            money = 0;
-                            return false;
-                        case 0x56:
-                            msg = "Magnetical_canal_falure";
-                            money = 0;
-                            return false;
-                        case 0x5F:
-                            msg = "Capacitance_canal_falure";
-                            money = 0;
-                            return false;
-
-                    }
-                    money = 0;
-                    msg = "";
-                    return false;
-                case 0x1C:
-                    switch (second) {
-                        case 0x60:
-                            msg = "Insertion_error";
-                            money = 0;
-                            return false;
-                        case 0x61:
-                            msg = "Dielectric_error";
-                            money = 0;
-                            return false;
-                        case 0x62:
-                            msg = "Previously_inserted_bill_remains_in_head";
-                            money = 0;
-                            return false;
-                        case 0x63:
-                            msg = "Compensation__factor_error";
-                            money = 0;
-                            return false;
-                        case 0x64:
-                            msg = "Bill_transport_error";
-                            money = 0;
-                            return false;
-                        case 0x65:
-                            msg = "Identification_error";
-                            money = 0;
-                            return false;
-                        case 0x66:
-                            msg = "Verification_error";
-                            money = 0;
-                            return false;
-                        case 0x67:
-                            msg = "Optic_sensor_error";
-                            money = 0;
-                            return false;
-                        case 0x68:
-                            msg = "Return_by_inhibit_error";
-                            money = 0;
-                            return false;
-                        case 0x69:
-                            msg = "Capacistance_error";
-                            money = 0;
-                            return false;
-                        case 0x6A:
-                            msg = "Operation_error";
-                            money = 0;
-                            return false;
-                        case 0x6C:
-                            msg = "Length_error";
-                            money = 0;
-                            return false;
-                    }
-                    money = 0;
-                    msg = "";
-                    return false;
-
-                case 0x80:
-                    msg = "Депонет";
-                    money = 0;
-                    return false;
-
-                case 0x81:
-                    switch (second) {
-                        case 0:
-                            msg = "Укладка";
-                            money = 1;
-                            return false;
-                        case 1:
-                            msg = "Укладка";
-                            money = 3;
-                            return false;
-                        case 2:
-                            msg = "Укладка";
-                            money = 5;
-                            return false;
-                        case 3:
-                            msg = "Укладка";
-                            money = 10;
-                            return false;
-                        case 4:
-                            msg = "Укладка";
-                            money = 20;
-                            return false;
-                        case 5:
-                            msg = "Укладка";
-                            money = 50;
-                            return false;
-                        case 6:
-                            msg = "Укладка";
-                            money = 100;
-                            return false;
-                        case 7:
-                            msg = "Укладка";
-                            money = 200;
-                            return false;
-                    }
-                    money = 0;
-                    msg = "";
-                    return false;
-
-                case 0x82:
-                    msg = "Возврат купюры";
-                    money = 0;
-                    return false;
-                default:
-                    msg = "";
-                    money = 0;
-                    return false;
-            }
-
+        private void WriteToPort(byte[] data) {
+            _port.WriteTimeout = 30;
+            _port.DiscardOutBuffer();
+            _port.Write(data, 0, data.Length);
         }
 
-        //#############################################################\\
+        private byte[] ReadFromPort() {
+            Thread.Sleep(100);
+            var answer = new byte[_port.BytesToRead];
+            _port.Read(answer, 0, _port.BytesToRead);
+            return answer;
+        }
+
+        private void ParseMessage(byte[] data) {
+
+            if (data.Length < 5 || CalculateCrc(data, data.Length - 1) != data[data.Length - 1]) {
+                _command = PrepareCommand(CashCodeCommands.NAckResponse);
+                _newCommand = true;
+                return;
+            }
+
+            switch (data[3]) {
+                case (byte) CashCodePollResponces.PowerUp:
+                    Log.Debug("GenericRejectionCodes.PowerUp", data);
+                    break;
+                case (byte) CashCodePollResponces.PowerUpWithBillInValidator:
+                    Log.Debug("GenericRejectionCodes.PowerUpWithBillInValidator", data);
+                    break;
+                case (byte) CashCodePollResponces.PowerUpWithBillInStacker:
+                    Log.Debug("GenericRejectionCodes.PowerUpWithBillInStacker", data);
+                    break;
+                case (byte) CashCodePollResponces.Initialize:
+                    Log.Debug("GenericRejectionCodes.Initialize", data);
+                    break;
+                case (byte) CashCodePollResponces.Idling:
+                    Log.Debug("GenericRejectionCodes.Idling", data);
+                    break;
+                case (byte) CashCodePollResponces.Accepting:
+                    Log.Debug("GenericRejectionCodes.Accepting", data);
+                    break;
+                case (byte) CashCodePollResponces.Stacking:
+                    Log.Debug("GenericRejectionCodes.Stacking", data);
+                    break;
+                case (byte) CashCodePollResponces.Returning:
+                    Log.Debug("GenericRejectionCodes.Returning", data);
+                    break;
+                case (byte) CashCodePollResponces.UnitDisabled:
+                    Log.Debug("GenericRejectionCodes.UnitDisabled", data);
+                    break;
+                case (byte) CashCodePollResponces.Holding:
+                    Log.Debug("GenericRejectionCodes.Holding", data);
+                    break;
+                case (byte) CashCodePollResponces.DeviceBusy:
+                    Log.Debug("GenericRejectionCodes.DeviceBusy", data);
+                    break;
+                case (byte) CashCodePollResponces.GenericRejecting:
+                    RejectionReason(data[4]);
+                    break;
+                case (byte) CashCodePollResponces.DropCasseteFull:
+                    Log.Debug("GenericRejectionCodes.DropCasseteFull", data);
+                    break;
+                case (byte) CashCodePollResponces.DropCasseteOutOfPosition:
+                    Log.Debug("GenericRejectionCodes.DropCasseteOutOfPosition", data);
+                    break;
+                case (byte) CashCodePollResponces.ValidatorJammed:
+                    Log.Debug("GenericRejectionCodes.ValidatorJammed", data);
+                    break;
+                case (byte) CashCodePollResponces.DropCasseteJammed:
+                    Log.Debug("GenericRejectionCodes.DropCasseteJammed", data);
+                    break;
+                case (byte) CashCodePollResponces.Cheated:
+                    Log.Debug("GenericRejectionCodes.Cheated", data);
+                    break;
+                case (byte) CashCodePollResponces.Pause:
+                    Log.Debug("GenericRejectionCodes.Pause", data);
+                    break;
+                case (byte) CashCodePollResponces.GenericFailure:
+                    FailureReason(data[4]);
+                    break;
+                case (byte) CashCodePollResponces.BillStacked:
+                    FindBillDenomination(data[4], "Принято");
+                    break;
+                case (byte) CashCodePollResponces.BillReturned:
+                    FindBillDenomination(data[4], "Возвращено");
+                    break;
+            }
+        }
+
+        private static void RejectionReason(byte data) {
+            switch (data) {
+                case (byte) GenericRejectionCodes.DueToInsertation:
+                    Log.Debug("GenericRejectionCodes.DueToInsertation", data);
+                    break;
+                case (byte) GenericRejectionCodes.DueToMagnetic:
+                    Log.Debug("GenericRejectionCodes.DueToMagnetic", data);
+                    break;
+                case (byte) GenericRejectionCodes.DueToRemainedBillInHead:
+                    Log.Debug("GenericRejectionCodes.DueToRemainedBillInHead", data);
+                    break;
+                case (byte) GenericRejectionCodes.DueToMultiplying:
+                    Log.Debug("GenericRejectionCodes.DueToMultiplying", data);
+                    break;
+                case (byte) GenericRejectionCodes.DueToConveying:
+                    Log.Debug("GenericRejectionCodes.DueToConveying", data);
+                    break;
+                case (byte) GenericRejectionCodes.DueToIdentification:
+                    Log.Debug("GenericRejectionCodes.DueToIdentification", data);
+                    break;
+                case (byte) GenericRejectionCodes.DueToVerification:
+                    Log.Debug("GenericRejectionCodes.DueToVerification", data);
+                    break;
+                case (byte) GenericRejectionCodes.DueToOptic:
+                    Log.Debug("GenericRejectionCodes.DueToOptic", data);
+                    break;
+                case (byte) GenericRejectionCodes.DueToInhibit:
+                    Log.Debug("GenericRejectionCodes.DueToInhibit", data);
+                    break;
+                case (byte) GenericRejectionCodes.DueToCapacity:
+                    Log.Debug("GenericRejectionCodes.DueToCapacity", data);
+                    break;
+                case (byte) GenericRejectionCodes.DueToOperation:
+                    Log.Debug("GenericRejectionCodes.DueToOperation", data);
+                    break;
+                case (byte) GenericRejectionCodes.DueToLenght:
+                    Log.Debug("GenericRejectionCodes.DueToLenght", data);
+                    break;
+            }
+        }
+
+        private static void FailureReason(byte data) {
+            switch (data) {
+                case (byte) GenericFailureCodes.StackMotor:
+                    Log.Debug("GenericFailureCodes.StackMotor", data);
+                    break;
+                case (byte) GenericFailureCodes.TransportMotorSpeed:
+                    Log.Debug("GenericFailureCodes.TransportMotorSpeed", data);
+                    break;
+                case (byte) GenericFailureCodes.TransportMotor:
+                    Log.Debug("GenericFailureCodes.TransportMotor", data);
+                    break;
+                case (byte) GenericFailureCodes.AligningMotor:
+                    Log.Debug("GenericFailureCodes.AligningMotor", data);
+                    break;
+                case (byte) GenericFailureCodes.InitialCassetteStatus:
+                    Log.Debug("GenericFailureCodes.InitialCassetteStatus", data);
+                    break;
+                case (byte) GenericFailureCodes.OpticCanal:
+                    Log.Debug("GenericFailureCodes.OpticCanal", data);
+                    break;
+                case (byte) GenericFailureCodes.MagneticCanal:
+                    Log.Debug("GenericFailureCodes.MagneticCanal", data);
+                    break;
+                case (byte) GenericFailureCodes.CapacitanceCanal:
+                    Log.Debug("GenericFailureCodes.CapacitanceCanal", data);
+                    break;
+            }
+        }
+
+        private void FindBillDenomination(byte bill, string action) {
+            switch (bill) {
+                case (byte) BillTypes.One:
+                    Log.Debug(String.Format("{0} купюра 1 сомони", action), bill);
+                    _command = PrepareCommand(CashCodeCommands.AckResponse);
+                    _newCommand = true;
+                    break;
+                case (byte) BillTypes.Three:
+                    Log.Debug(String.Format("{0} купюра 3 сомони", action), bill);
+                    _command = PrepareCommand(CashCodeCommands.AckResponse);
+                    _newCommand = true;
+                    break;
+                case (byte) BillTypes.Five:
+                    Log.Debug(String.Format("{0} купюра 5 сомони", action), bill);
+                    _command = PrepareCommand(CashCodeCommands.AckResponse);
+                    _newCommand = true;
+                    break;
+                case (byte) BillTypes.Ten:
+                    Log.Debug(String.Format("{0} купюра 10 сомони", action), bill);
+                    _command = PrepareCommand(CashCodeCommands.AckResponse);
+                    _newCommand = true;
+                    break;
+                case (byte) BillTypes.Twenty:
+                    Log.Debug(String.Format("{0} купюра 20 сомони", action), bill);
+                    _command = PrepareCommand(CashCodeCommands.AckResponse);
+                    _newCommand = true;
+                    break;
+                case (byte) BillTypes.Fifty:
+                    Log.Debug(String.Format("{0} купюра 50 сомони", action), bill);
+                    _command = PrepareCommand(CashCodeCommands.AckResponse);
+                    _newCommand = true;
+                    break;
+                case (byte) BillTypes.Hundred:
+                    Log.Debug(String.Format("{0} купюра 100 сомони", action), bill);
+                    _command = PrepareCommand(CashCodeCommands.AckResponse);
+                    _newCommand = true;
+                    break;
+                case (byte) BillTypes.TwoHundred:
+                    Log.Debug(String.Format("{0} купюра 200 сомони", action), bill);
+                    _command = PrepareCommand(CashCodeCommands.AckResponse);
+                    _newCommand = true;
+                    break;
+                case (byte) BillTypes.FiveHundred:
+                    Log.Debug(String.Format("{0} купюра 500 сомони", action), bill);
+                    _command = PrepareCommand(CashCodeCommands.AckResponse);
+                    _newCommand = true;
+                    break;
+            }
+        }
+
+        public void EnableBillTypes() {
+            _command = PrepareLongCommand(CashCodeCommands.EnableBillTypes, 0xff, 0x00);
+            _newCommand = true;
+        }
+
+        public void DisableBillTypes() {
+            _command = PrepareLongCommand(CashCodeCommands.EnableBillTypes, 0x00, 0x00);
+            _newCommand = true;
+        }
+
+        public void Reset() {
+            _command = PrepareCommand(CashCodeCommands.Reset);
+            _newCommand = true;
+        }
     }
 }
