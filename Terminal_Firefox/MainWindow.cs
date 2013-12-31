@@ -16,7 +16,7 @@ namespace Terminal_Firefox {
         private CashCode _cashCode = new CashCode();
         private readonly Thread _thrCashCode;
         private GeckoWebBrowser _browser = new GeckoWebBrowser { Dock = DockStyle.Fill };
-
+        private ushort _currentWindow = 0;
 
         public MainWindow() {
             InitializeComponent();
@@ -41,26 +41,54 @@ namespace Terminal_Firefox {
         }
 
         private void DocumentReady() {
+            _currentWindow = ushort.Parse(_browser.Document.Title);
+
+            switch (_currentWindow) {
+                case (int)CurrentWindow.MainWindow:
+                    break;
+                case (int)CurrentWindow.DependentWindow:
+                    AddJSToDom(
+                        "var dependent = {'dependent': " +
+                            "[{ 'image': 'images/service_logos/1.png', 'class': 'top-img', 'id': '1' }," +
+                            "{ 'image': 'images/service_logos/4.png', 'class': 'top-img', 'id': '4' }," +
+                            "{ 'image': 'images/service_logos/5.png', 'class': 'top-img', 'id': '5' }," +
+                            "{ 'image': 'images/service_logos/7.png', 'class': 'top-img', 'id': '7' }," +
+                            "{ 'image': 'images/service_logos/8.png', 'class': 'top-img', 'id': '8' }," +
+                            "{ 'image': 'images/service_logos/9.png', 'class': 'top-img', 'id': '9' }," +
+                            "{ 'image': 'images/service_logos/10.png', 'class': 'top-img', 'id': '10' }," +
+                            "{ 'image': 'images/service_logos/11.png', 'class': 'top-img', 'id': '11' }," +
+                            "{ 'image': 'images/service_logos/12.png', 'class': 'top-img', 'id': '12' }," +
+                            "{ 'image': 'images/service_logos/16.png', 'class': 'top-img', 'id': '16' }," +
+                            "{ 'image': 'images/service_logos/17.png', 'class': 'top-img', 'id': '17' }," +
+                            "{ 'image': 'images/service_logos/18.png', 'class': 'top-img', 'id': '18' }," +
+                            "{ 'image': 'images/service_logos/19.png', 'class': 'top-img', 'id': '19' }]};" +
+                            "setProperties();");
+                    break;
+                case (int)CurrentWindow.EnterNumberWindow:
+                    break;
+                case (int)CurrentWindow.PayWindow:
+                    break;
+            }
+
+            Log.Debug(String.Format("Current window id is {0}", _currentWindow));
 
         }
 
 
         private void BrowserDomClick(object sender, DomEventArgs e) {
             if (sender == null || e == null || e.Target == null) return;
-            var browser = (GeckoWebBrowser) sender;
-
+            
             var clicked = e.Target.CastToGeckoElement();
 
             if (clicked != null) {
-                if (browser.Document.Title.Equals("1")) {
+                Log.Debug(String.Format("Current window id is {0}", _currentWindow));
+                if ((int)CurrentWindow.MainWindow == _currentWindow) {
                     switch (clicked.GetAttribute("data-type")) {
                         case "service":
-                            
                             Log.Debug(String.Format("Clicked service with id {0}", clicked.GetAttribute("id")));
                             break;
                         case "top-service":
                             try {
-                                _payment.id_uslugi = long.Parse(clicked.GetAttribute("id"));
                                 Log.Debug(String.Format("Clicked top-service with id {0}", clicked.GetAttribute("id")));
                             }
                             catch (Exception ex) {
@@ -72,9 +100,11 @@ namespace Terminal_Firefox {
                             Log.Debug("Clicked element was null");
                             return;
                     }
-                } else if (browser.Document.Title.Equals("2")) {
+                } else if ((int)CurrentWindow.DependentWindow == _currentWindow) {
 
-                } else if (browser.Document.Title.Equals("3")) {
+                } else if ((int)CurrentWindow.EnterNumberWindow == _currentWindow) {
+                    
+                } else if ((int)CurrentWindow.PayWindow == _currentWindow) {
                     
                 } 
             }
@@ -85,51 +115,5 @@ namespace Terminal_Firefox {
             innerHtml.TextContent = textContent;
             _browser.Document.Head.AppendChild(innerHtml);
         }
-
-        #region Original version
-
-        //protected void ModifyElements(GeckoElement element, string tagName, Action<GeckoElement> mod) {
-        //    while (element != null) {
-        //        if (element.TagName == tagName) {
-        //            mod(element);
-        //        }
-        //        ModifyElements(element.FirstChild as GeckoElement, tagName, mod);
-        //        element = (element.NextSibling as GeckoElement);
-        //    }
-
-        //var geckoDomElement = browser.Document.DocumentElement;
-        //var element = geckoDomElement as GeckoHtmlElement;
-        //if (element == null) return;
-        //var innerHtml = element.OwnerDocument.CreateHtmlElement("script");
-        //element.OwnerDocument.GetElementsByTagName("head")[0].AppendChild(innerHtml);
-
-        //}
-
-
-        //protected void TestModifyingDom(GeckoWebBrowser browser) {
-
-        //GeckoElement g = browser.Document.DocumentElement;
-        //ModifyElements(g, "HEAD", e => {
-        //                              var newElement = g.OwnerDocument.CreateElement("script");
-        //                              newElement.TextContent = "setMask('926-***-**-**');";
-        //                              g.InsertBefore(newElement, e);
-        //                          });
-        //}
-
-
-        //protected void DisplayElements(GeckoElement g) {
-        //    while (g != null) {
-        //        Console.WriteLine("tag = {0} value = {1} attr={2}", g.TagName, g.TextContent, g.Attributes);
-        //        DisplayElements(g.FirstChild as GeckoElement);
-        //        g = (g.NextSibling as GeckoElement);
-        //    }
-        //}
-
-
-        //protected void TestQueryingOfDom(GeckoWebBrowser browser) {
-        //    GeckoElement g = browser.Document.DocumentElement;
-        //    DisplayElements(g);
-        //}
-        #endregion
     }
 }
