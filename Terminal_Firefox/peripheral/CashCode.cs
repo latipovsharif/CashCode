@@ -25,7 +25,7 @@ namespace Terminal_Firefox.peripheral {
 
         public CashCode() {
             try {
-                Log.Info("Открывает порт");
+                Log.Info("Открываю порт");
                 _port = new SerialPort(ConfigurationManager.AppSettings["com"], 9600, Parity.None, 8, StopBits.One);
                 _port.Open();
                 _port.WriteTimeout = 400;

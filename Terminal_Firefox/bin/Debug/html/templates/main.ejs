@@ -1,5 +1,5 @@
 <% for(var i = 0; i < main.length; i++) { %>
-	<img src="<%= main[i].image %>" data-type="service" class="<%= main[i].class %>" id="1"
-         name="img1" onmousedown="mouseDown(this);" onmouseup="mouseUp(this);">
+	<img src="<%= main[i].image %>" data-type="service" class="<%= main[i].class %>" id="<%= main[i].id %>"
+         name="img1" onmousedown="mouseDown(this);" onmouseup="mouseUp(this);" onclick="goDependent()">
 <% } %>	
 

@@ -273,3 +273,17 @@
 12/31/2013 09:09:20|Info|Открывает порт|Terminal_Firefox.peripheral.CashCode..ctor
 12/31/2013 09:09:58|Info|Запуск приложения...|Terminal_Firefox.Program.Main
 12/31/2013 09:09:58|Info|Открывает порт|Terminal_Firefox.peripheral.CashCode..ctor
+12/31/2013 14:56:15|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+12/31/2013 14:56:18|Info|Открывает порт|Terminal_Firefox.peripheral.CashCode..ctor
+12/31/2013 14:56:40|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+12/31/2013 14:56:40|Info|Открывает порт|Terminal_Firefox.peripheral.CashCode..ctor
+12/31/2013 14:57:45|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+12/31/2013 14:57:45|Info|Открывает порт|Terminal_Firefox.peripheral.CashCode..ctor
+12/31/2013 14:58:40|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+12/31/2013 14:58:40|Info|Открывает порт|Terminal_Firefox.peripheral.CashCode..ctor
+01/13/2014 11:16:55|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+01/13/2014 11:16:57|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+01/13/2014 11:40:33|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+01/13/2014 11:40:33|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+01/13/2014 11:49:56|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+01/13/2014 11:49:56|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor

@@ -17,7 +17,7 @@
 		<form action="dependent.html">
 
 			<div class="top-services margins" id="top-services">
-                <!-- This div is filed by ../templates/template.ejs -->
+                <!-- This div is filed by ../templates/top.ejs -->
 			</div>
 
 			<div class="main-services margins" id="main-services">
@@ -25,9 +25,12 @@
 			</div>
 
 			<div class="languages">
-				<img src="images/button_rus.png" class="lang-btn" id="13" name="language-btn" onmousedown="mouseDown(this);" onmouseup="mouseUp(this);" alt="" />
-				<img src="images/button_rus.png" class="lang-btn" id="14" name="language-btn" onmousedown="mouseDown(this);" onmouseup="mouseUp(this);" alt="" />
-				<img src="images/button_rus.png" class="lang-btn" id="15" name="language-btn" onmousedown="mouseDown(this);" onmouseup="mouseUp(this);" alt="" />
+				<img src="images/button_rus.png" class="lang-btn" id="13" name="language-btn"
+                     onmousedown="mouseDown(this);" onmouseup="mouseUp(this);" alt="" />
+				<img src="images/button_rus.png" class="lang-btn" id="14" name="language-btn"
+                     onmousedown="mouseDown(this);" onmouseup="mouseUp(this);" alt="" />
+				<img src="images/button_rus.png" class="lang-btn" id="15" name="language-btn"
+                     onmousedown="mouseDown(this);" onmouseup="mouseUp(this);" alt="" />
 			</div>
 
 			<div class="footer">
@@ -38,7 +41,7 @@
 	</body>
 
 	<script type="text/javascript">
-		var html = new EJS({url: 'templates/template.ejs'}).render(services);
+		var html = new EJS({url: 'templates/top.ejs'}).render(services);
 		document.getElementById('top-services').innerHTML = html;
 
 		var html1 = new EJS({url: 'templates/main.ejs'}).render(main);
