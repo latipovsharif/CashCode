@@ -54,6 +54,7 @@ namespace Terminal_Firefox {
             _sum += banknote;
             _browser.Document.GetElementById("sum").TextContent = _sum.ToString();
             _browser.Document.GetElementById("banknote").TextContent = banknote.ToString();
+            _browser.Document.GetElementById("commission").TextContent = (_sum - Rate.GetCommissionAmount(_payment.id_uslugi, _sum)).ToString();
         }
 
 
