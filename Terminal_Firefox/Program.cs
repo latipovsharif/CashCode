@@ -3,10 +3,8 @@ using System.Windows.Forms;
 using Gecko;
 using NLog;
 
-namespace Terminal_Firefox
-{
-    internal static class Program
-    {
+namespace Terminal_Firefox {
+    internal static class Program {
 
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -14,8 +12,7 @@ namespace Terminal_Firefox
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        private static void Main()
-        {
+        private static void Main() {
 
             Log.Info("Запуск приложения...");
 
@@ -30,13 +27,11 @@ namespace Terminal_Firefox
             Application.Run(new MainWindow());
         }
 
-        private static void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e)
-        {
+        private static void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e) {
             Log.Fatal(e);
         }
 
-        private static void ApplicationThreadException(object sender, System.Threading.ThreadExceptionEventArgs e)
-        {
+        private static void ApplicationThreadException(object sender, System.Threading.ThreadExceptionEventArgs e) {
             Log.Fatal(e);
         }
     }

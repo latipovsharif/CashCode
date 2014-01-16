@@ -46,14 +46,39 @@ body {
 
 .rightBtn 
 {
+    border: none;
+    width: 221px;
+    height: 93px;
     margin-right: 30px;
     float: right;
+    background: url('../ru/button_next.png'), transparent;
 }
 
-.leftBtn 
+.rightBtn:active {
+    background: url('../ru/button_next_off.png'), transparent;
+}
+
+.rightBtn:disabled{
+    background: url('../ru/button_next_dis.png'), transparent;
+}
+
+
+.leftBtn
 {
+    border: none;
+    width: 221px;
+    height: 93px;
+    background: url('../ru/button_back.png'), transparent;
     margin-left: 30px;
     float:left;
+}
+
+.leftBtn:active {
+    background: url('../ru/button_back_off.png'), transparent;
+}
+
+.leftBtn:disabled{
+    background: url('../ru/button_back_dis.png'), transparent;
 }
 
 .navigation 

@@ -18,6 +18,8 @@ function mouseDown(img) {
         img.src = c + "_off.png";
     }
 }
+/* Animate button click */
+
 
 function goDependent() {
     window.location = "dependent.html";
@@ -26,5 +28,8 @@ function goDependent() {
 function goEnterNumber() {
     window.location = "enter_number.html";
 }
-/* Animate button click */
+
+function goPay(){
+    window.location = "pay.html"
+}
 

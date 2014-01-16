@@ -1,7 +1,7 @@
 ﻿namespace Terminal_Firefox.classes {
     class Payment {
         public long id { get; set; }
-        public long id_uslugi { get; set; }
+        public short id_uslugi { get; set; }
         public string nomer { get; set; }
         public string nomer2 { get; set; } //Sms information
         public double summa { get; set; }

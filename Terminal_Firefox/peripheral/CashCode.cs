@@ -5,15 +5,25 @@ using System.Configuration;
 using NLog;
 
 namespace Terminal_Firefox.peripheral {
+    
+    public delegate void MoneyAccepted(short money);
+
     public class CashCode {
+
+        public event MoneyAccepted MoneyAcceptedHandler;
+
+        private void OnMoneyAccepted(short money) {
+            MoneyAccepted handler = MoneyAcceptedHandler;
+            if (handler != null) handler(money);
+        }
 
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
         private readonly SerialPort _port;
         private const int POLYNOMIAL = 0x08408; // CRC 
         private bool _flag = true; // Enabling and disabling polling
-        private bool _newCommand;
-        private byte[] _command;
+        private static bool _newCommand;
+        private static byte[] _command;
 
         /* CONSTANTS FOR BIL VALIDATOR */
 
@@ -63,20 +73,24 @@ namespace Terminal_Firefox.peripheral {
         }
 
         public void StartPolling() {
-            byte[] preparedCommand = PrepareCommand(CashCodeCommands.Poll);
-            while (_flag) {
-                WriteToPort(preparedCommand);
-                var bytes = ReadFromPort();
-                ParseMessage(bytes);
-                if (!_newCommand) continue;
-                WriteToPort(_command);
-                bytes = ReadFromPort();
-                ParseMessage(bytes);
-                _newCommand = false;
+            if (_port != null && _port.IsOpen) {
+                byte[] preparedCommand = PrepareCommand(CashCodeCommands.Poll);
+                while (_flag) {
+                    WriteToPort(preparedCommand);
+                    var bytes = ReadFromPort();
+                    ParseMessage(bytes);
+                    if (!_newCommand) continue;
+                    WriteToPort(_command);
+                    bytes = ReadFromPort();
+                    ParseMessage(bytes);
+                    _newCommand = false;
+                }
+            } else {
+                // Todo block terminal
             }
         }
 
-        private static char CalculateCrc(byte[] data, int length) {
+        private char CalculateCrc(byte[] data, int length) {
             char crc = (char) 0x0000;
             if (length < 4) return (char) 0;
             for (int i = 0; i < length; i++) {
@@ -172,15 +186,15 @@ namespace Terminal_Firefox.peripheral {
                     FailureReason(data[4]);
                     break;
                 case (byte) CashCodePollResponces.BillStacked:
-                    FindBillDenomination(data[4], "Принято");
+                    FindBillDenomination(data[4], "Принята");
                     break;
                 case (byte) CashCodePollResponces.BillReturned:
-                    FindBillDenomination(data[4], "Возвращено");
+                    FindBillDenomination(data[4], "Возвращена");
                     break;
             }
         }
 
-        private static void RejectionReason(byte data) {
+        private void RejectionReason(byte data) {
             switch (data) {
                 case (byte) GenericRejectionCodes.DueToInsertation:
                     Log.Debug("GenericRejectionCodes.DueToInsertation", data);
@@ -221,7 +235,7 @@ namespace Terminal_Firefox.peripheral {
             }
         }
 
-        private static void FailureReason(byte data) {
+        private void FailureReason(byte data) {
             switch (data) {
                 case (byte) GenericFailureCodes.StackMotor:
                     Log.Debug("GenericFailureCodes.StackMotor", data);
@@ -256,46 +270,55 @@ namespace Terminal_Firefox.peripheral {
                     Log.Debug(String.Format("{0} купюра 1 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
+                    OnMoneyAccepted(1);                    
                     break;
                 case (byte) BillTypes.Three:
                     Log.Debug(String.Format("{0} купюра 3 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
+                    OnMoneyAccepted(3);                    
                     break;
                 case (byte) BillTypes.Five:
                     Log.Debug(String.Format("{0} купюра 5 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
+                    OnMoneyAccepted(5);                    
                     break;
                 case (byte) BillTypes.Ten:
                     Log.Debug(String.Format("{0} купюра 10 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
+                    OnMoneyAccepted(10);                    
                     break;
                 case (byte) BillTypes.Twenty:
                     Log.Debug(String.Format("{0} купюра 20 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
+                    OnMoneyAccepted(20);                    
                     break;
                 case (byte) BillTypes.Fifty:
                     Log.Debug(String.Format("{0} купюра 50 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
+                    OnMoneyAccepted(50);                    
                     break;
                 case (byte) BillTypes.Hundred:
                     Log.Debug(String.Format("{0} купюра 100 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
+                    OnMoneyAccepted(100);                    
                     break;
                 case (byte) BillTypes.TwoHundred:
                     Log.Debug(String.Format("{0} купюра 200 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
+                    OnMoneyAccepted(200);                    
                     break;
                 case (byte) BillTypes.FiveHundred:
                     Log.Debug(String.Format("{0} купюра 500 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
+                    OnMoneyAccepted(500);                    
                     break;
             }
         }

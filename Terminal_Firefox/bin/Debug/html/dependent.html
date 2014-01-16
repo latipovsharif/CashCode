@@ -22,7 +22,7 @@
 	</body>
 
 	<script type="text/javascript">
-        function setProperties(){
+        function setProperties(param){
 	        var html = new EJS({ url: 'templates/dependent.ejs' }).render(dependent);
 	        document.getElementById('dependent').innerHTML = html;
         }
