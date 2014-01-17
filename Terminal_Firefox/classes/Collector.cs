@@ -14,6 +14,7 @@ namespace Terminal_Firefox.classes {
                 DBWrapper.Instance.Command.Parameters.Add("@login", login);
                 DBWrapper.Instance.Command.Parameters.Add("@password", password);
                 Id = int.Parse(DBWrapper.Instance.Command.ExecuteScalar().ToString());
+
                 if(Id  > 0) {
                     passw = password;
                     user = login;
