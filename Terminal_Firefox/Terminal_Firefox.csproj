@@ -58,6 +58,7 @@
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="classes\Collect.cs" />
     <Compile Include="classes\Payment.cs" />
     <Compile Include="classes\Rate.cs" />
     <Compile Include="classes\TerminalSettings.cs" />
