@@ -1,9 +1,123 @@
-<!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>10</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script type="text/javascript" src="js/jquery.js"></script>
 </head>
 <body>
 
+
+<div style="width: 100%; height: 350px;">
+<!--place for some banner, maybe-->
+</div>
+
+
+<table style="margin: auto; width: 50%; height: 120px;">
+    <tr>
+
+        <td align="center">
+            <label style="font-size: 20px;">Логин:
+                <input type="text"
+                       style="font-size: 20px; width: 250px; height: 40px;"
+                       onfocus="loginIsActive=true" id="login" class="login">
+            </label>
+        </td>
+
+        <td align="center">
+            <label style="font-size: 20px;">Пароль:
+                <input type="password"
+                       style="font-size: 20px;width: 250px; height: 40px;"
+                       onfocus="loginIsActive=false" id="password" class="password">
+            </label>
+        </td>
+
+    </tr>
+    </table>
+<table style="margin: auto; width: 70%">
+    <tr>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="1"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="2"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="3"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="4"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="5"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="6"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="7"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="8"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="9"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="0"></td>
+        <td><input class="keyboard-buttons" onclick="clearField()" type="button" value="Удалить"></td>
+    </tr>
+    </table>
+<table style="margin: auto; width: 60%">
+    <tr>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="q"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="w"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="e"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="r"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="t"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="y"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="u"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="i"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="o"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="p"></td>
+    </tr>
+    </table>
+<table style="margin: auto; width: 50%">
+    <tr>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="a"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="s"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="d"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="f"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="g"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="h"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="j"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="k"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="l"></td>
+    </tr>
+    </table>
+<table style="margin: auto; width: 40%">
+    <tr>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="z"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="x"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="c"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="v"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="b"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="n"></td>
+        <td><input class="keyboard-buttons" onclick="appendChar(this.value)" type="button" value="m"></td>
+    </tr>
+</table>
+<div class="navigation">
+    <button id="back" class="leftBtn" onclick="goIndex()"></button>
+    <button id="next" class="rightBtn" onclick="goEncashment()"></button>
+</div>
 </body>
+<script>
+    var loginIsActive = true;
+    var login = "";
+    var password = "";
+
+    function appendChar(char){
+        if(loginIsActive){
+            login += char;
+            $("#login").val(login);
+        } else {
+            password += char;
+            $("#password").val(password);
+        }
+    }
+
+    function clearField(){
+        if (loginIsActive){
+            login = "";
+            $("#login").val(login);
+        } else {
+            password = "";
+            $("#password").val(password);
+        }
+    }
+
+    function goIndex(){
+        window.location = 'index.html';
+    }
+</script>
 </html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>11</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+
+    <table border="1">
+        <tr>
+            <td colspan="3">ОАО "Банк эсхата"</td>
+        </tr>
+        <tr>
+            <td colspan="3">Терминал номер:<span id="terminal-number"></span></td>
+        </tr>
+        <tr>
+            <td colspan="3">Адрес:<span id="address"></span></td>
+        </tr>
+        <tr>
+            <td colspan="3">Дата:<span id="date"></span></td>
+        </tr>
+        <tr>
+            <td colspan="3">Номер инкассации:<span id="collection-number"></span></td>
+        </tr>
+        <tr>
+            <td colspan="3">Инкассатор:<span id="collector"></span></td>
+        </tr>
+        <tr>
+            <th><span>Купюра</span></th>
+            <th><span>Количество</span></th>
+            <th><span>Сумма</span></th>
+        </tr>
+        <tr>
+            <td><span>1 сомони</span></td>
+            <td><span id="quantity-1"></span></td>
+            <td><span id="sum-1"></span></td>
+        </tr>
+        <tr>
+            <td><span>3 сомони</span></td>
+            <td><span id="quantity-3"></span></td>
+            <td><span id="sum-3"></span></td>
+        </tr>
+        <tr>
+            <td><span>5 сомони</span></td>
+            <td><span id="quantity-5"></span></td>
+            <td><span id="sum-5"></span></td>
+        </tr>
+        <tr>
+            <td><span>10 сомони</span></td>
+            <td><span id="quantity-10"></span></td>
+            <td><span id="sum-10"></span></td>
+        </tr>
+        <tr>
+            <td><span>20 сомони</span></td>
+            <td><span id="quantity-20"></span></td>
+            <td><span id="sum-20"></span></td>
+        </tr>
+        <tr>
+            <td><span>50 сомони</span></td>
+            <td><span id="quantity-50"></span></td>
+            <td><span id="sum-50"></span></td>
+        </tr>
+        <tr>
+            <td><span>100 сомони</span></td>
+            <td><span id="quantity-100"></span></td>
+            <td><span id="sum-100"></span></td>
+        </tr>
+        <tr>
+            <td><span>200 сомони</span></td>
+            <td><span id="quantity-200"></span></td>
+            <td><span id="sum-200"></span></td>
+        </tr>
+        <tr>
+            <td><span>500 сомони</span></td>
+            <td><span id="quantity-500"></span></td>
+            <td><span id="sum-500"></span></td>
+        </tr>
+        <tr>
+            <td><span>Итого:</span></td>
+            <td><span id="sum-quantity"></span></td>
+            <td><span id="sum-sum"></span></td>
+        </tr>
+        <tr>
+            <td colspan="3">Подпись кассира: __________</td>
+        </tr>
+        <tr>
+            <td colspan="3">Подпись техник-инкассатора: __________</td>
+        </tr>
+
+    </table>
+    <div class="navigation">
+        <button id="back" class="leftBtn" onclick="goIndex()"></button>
+        <button id="next" class="rightBtn" onclick="goEncashment()"></button>
+    </div>
+</body>
+</html>

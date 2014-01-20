@@ -1,28 +1,5 @@
-01/16/2014 09:46:04|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 09:46:50|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 09:46:53|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 09:47:43|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 09:47:54|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 09:48:27|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 09:50:54|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 09:56:12|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 10:15:55|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 10:32:05|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 10:33:04|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 10:41:21|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 11:13:01|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 11:30:44|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 15:52:12|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 15:52:48|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 15:53:30|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 16:37:42|Error|Ќевозможно получить комиссию дл€ услуги с id = 4 и суммой в 1|Terminal_Firefox.classes.Rate.GetCommissionAmount
-01/16/2014 16:37:53|Error|Ќевозможно получить комиссию дл€ услуги с id = 4 и суммой в 2|Terminal_Firefox.classes.Rate.GetCommissionAmount
-01/16/2014 16:38:36|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 16:38:50|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 16:38:53|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 16:38:54|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 16:41:01|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 16:41:08|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 16:41:24|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 16:47:39|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-01/16/2014 16:50:13|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
+01/20/2014 16:12:41|Error|Ќевозможно получить инкассатора с логином  и паролем |Terminal_Firefox.classes.Collector.FindCollector
+01/20/2014 16:15:05|Error|Ќевозможно получить инкассатора с логином  и паролем |Terminal_Firefox.classes.Collector.FindCollector
+01/20/2014 16:24:25|Error|Ќевозможно получить инкассатора с логином 1111 и паролем 222288|Terminal_Firefox.classes.Collector.FindCollector
+01/20/2014 16:27:54|Error|Ќевозможно получить инкассатора с логином 1111 и паролем 222288|Terminal_Firefox.classes.Collector.FindCollector
+01/20/2014 16:27:57|Error|Ќевозможно получить инкассатора с логином 1111 и паролем 222288|Terminal_Firefox.classes.Collector.FindCollector

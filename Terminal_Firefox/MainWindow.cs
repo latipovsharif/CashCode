@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.IO;
 using System.Windows.Forms;
 using System.Threading;
@@ -9,12 +10,8 @@ using Terminal_Firefox.Utils;
 using Terminal_Firefox.classes;
 using Terminal_Firefox.peripheral;
 
-
 namespace Terminal_Firefox {
     public partial class MainWindow : Form {
-
-
-        // Database password 'sdfsafd7897&^^*&'
 
         private Payment _payment = new Payment();
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
@@ -22,9 +19,11 @@ namespace Terminal_Firefox {
         private readonly Thread _thrCashCode;
         private readonly GeckoWebBrowser _browser = new GeckoWebBrowser {Dock = DockStyle.Fill};
         private ushort _currentWindow;
-        private ushort _previousWindow;
+        //private ushort _previousWindow;
         private short _mainServiceId;
         private short _sum;
+        private Collector _collector = new Collector();
+
 
         public MainWindow() {
             InitializeComponent();
@@ -60,29 +59,36 @@ namespace Terminal_Firefox {
 
         private void DocumentReady() {
             _currentWindow = ushort.Parse(_browser.Document.Title);
-            bool isBack = _currentWindow < _previousWindow;
-            _previousWindow = _currentWindow;
+            //bool isBack = _currentWindow < _previousWindow;
+            //_previousWindow = _currentWindow;
             string property = "";
             string toAppend="";
 
             switch (_currentWindow) {
-                case (int) CurrentWindow.MainWindow:
-                    Log.Debug(String.Format("Current window id is {0}", CurrentWindow.MainWindow));
+                case (int) CurrentWindow.Main:
+                    Log.Debug(String.Format("Current window id is {0}", CurrentWindow.Main));
                     break;
-                case (int) CurrentWindow.DependentWindow:
+                case (int) CurrentWindow.Dependent:
                     toAppend = Util.GetSubServices(_mainServiceId, Util.ServiceTypes.MainService);
-                    Log.Debug(String.Format("Current window id is {0}", CurrentWindow.DependentWindow));
+                    Log.Debug(String.Format("Current window id is {0}", CurrentWindow.Dependent));
                     break;
-                case (int) CurrentWindow.EnterNumberWindow:
+                case (int) CurrentWindow.EnterNumber:
                     toAppend = Util.GetSubServices(_payment.id_uslugi, Util.ServiceTypes.Service);
                     property = _payment.nomer;
-                    Log.Debug(String.Format("Current window id is {0}", CurrentWindow.EnterNumberWindow));
+                    Log.Debug(String.Format("Current window id is {0}", CurrentWindow.EnterNumber));
                     break;
-                case (int) CurrentWindow.PayWindow:
+                case (int) CurrentWindow.Pay:
                     var element = (GeckoHtmlElement)_browser.Window.Document.GetElementById("entered-number");
+                    
+                    // Ensure that entered number is not technical number for encashment
+                    if (_payment.nomer.Equals(ConfigurationManager.AppSettings["encashmentCode"])) {
+                        _browser.Navigate(Directory.GetCurrentDirectory() + @"\html\encashment.html");
+                        return;
+                    }
+
                     element.TextContent = _payment.nomer;
                     _cashCode.EnableBillTypes();
-                    Log.Debug(String.Format("Current window id is {0}", CurrentWindow.PayWindow));
+                    Log.Debug(String.Format("Current window id is {0}", CurrentWindow.Pay));
                     break;
             }
             Util.AddJSToDom(_browser, toAppend);
@@ -98,7 +104,7 @@ namespace Terminal_Firefox {
             if (clicked == null) return;
 
             switch (_currentWindow) {
-                case (int) CurrentWindow.MainWindow:
+                case (int) CurrentWindow.Main:
                     switch (clicked.GetAttribute("data-type")) {
                         case "service":
                             short.TryParse(clicked.GetAttribute("id"), out _mainServiceId);
@@ -118,9 +124,9 @@ namespace Terminal_Firefox {
                             return;
                     }
                     break;
-                case (int) CurrentWindow.DependentWindow:
+                case (int) CurrentWindow.Dependent:
                     break;
-                case (int) CurrentWindow.EnterNumberWindow:
+                case (int) CurrentWindow.EnterNumber:
                     if (clicked.GetAttribute("id") == null) return;
                     if(clicked.GetAttribute("id").Equals("next")) {
                         var input = (GeckoInputElement)_browser.Document.GetElementById("number");
@@ -128,7 +134,19 @@ namespace Terminal_Firefox {
                         Log.Debug(String.Format("Entered number {0}", input.Value));
                     }
                     break;
-                case (int) CurrentWindow.PayWindow:
+                case (int) CurrentWindow.Pay:
+                    break;
+                case (int)CurrentWindow.Encashment:
+                    if (clicked.HasAttribute("id") && clicked.GetAttribute("id").Equals("next")) {
+                        var login = (GeckoInputElement) _browser.Document.GetElementById("login");
+                        var password = (GeckoInputElement) _browser.Document.GetElementById("password");
+                        _collector = Collector.FindCollector(login.Value, password.Value);
+                        if (_collector.Id <= 0) {
+                            MessageBox.Show("Неправильный логин и/или пароль");
+                        } else {
+                            _browser.Navigate(Directory.GetCurrentDirectory() + @"\html\makeEncashment.html");
+                        }
+                    }
                     break;
             }
         }

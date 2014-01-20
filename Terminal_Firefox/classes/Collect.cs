@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Data.SqlServerCe;
 using NLog;
 
 namespace Terminal_Firefox.classes {
