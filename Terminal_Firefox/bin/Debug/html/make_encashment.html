@@ -1,0 +1,193 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>11</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/jquery.js" type="text/javascript"></script>
+</head>
+<style type="text/css">
+    table {
+        border-width: 1px;
+        border-spacing: 2px;
+        border-style: outset;
+        border-color: gray;
+        border-collapse: separate;
+        background-color: white;
+    }
+    table th {
+        border-width: 1px;
+        padding: 1px;
+        border-style: dashed;
+        border-color: gray;
+        background-color: white;
+    }
+    table tr {
+        border-width: 1px;
+        padding: 1px;
+        border-style: dashed;
+        border-color: gray;
+        background-color: white;
+    }
+</style>
+<body>
+
+    <table style="margin: auto; border-style: dashed; padding: 4px;">
+        <tr>
+            <td colspan="3">ОАО "Банк эсхата"</td>
+        </tr>
+        <tr>
+            <td colspan="3">Терминал номер:<span id="terminal-number"></span></td>
+        </tr>
+        <tr>
+            <td colspan="3">Адрес:<span id="address"></span></td>
+        </tr>
+        <tr>
+            <td colspan="3">Дата:<span id="date"></span></td>
+        </tr>
+        <tr>
+            <td colspan="3">Номер инкассации:<span id="collection-number"></span></td>
+        </tr>
+        <tr>
+            <td colspan="3">Инкассатор:<span id="collector"></span></td>
+        </tr>
+        <tr>
+            <th><span>Купюра</span></th>
+            <th><span>Количество</span></th>
+            <th><span>Сумма</span></th>
+        </tr>
+        <tr>
+            <td><span>1 сомони</span></td>
+            <td><span id="quantity-1"></span></td>
+            <td><span id="sum-1"></span></td>
+        </tr>
+        <tr>
+            <td><span>3 сомони</span></td>
+            <td><span id="quantity-3"></span></td>
+            <td><span id="sum-3"></span></td>
+        </tr>
+        <tr>
+            <td><span>5 сомони</span></td>
+            <td><span id="quantity-5"></span></td>
+            <td><span id="sum-5"></span></td>
+        </tr>
+        <tr>
+            <td><span>10 сомони</span></td>
+            <td><span id="quantity-10"></span></td>
+            <td><span id="sum-10"></span></td>
+        </tr>
+        <tr>
+            <td><span>20 сомони</span></td>
+            <td><span id="quantity-20"></span></td>
+            <td><span id="sum-20"></span></td>
+        </tr>
+        <tr>
+            <td><span>50 сомони</span></td>
+            <td><span id="quantity-50"></span></td>
+            <td><span id="sum-50"></span></td>
+        </tr>
+        <tr>
+            <td><span>100 сомони</span></td>
+            <td><span id="quantity-100"></span></td>
+            <td><span id="sum-100"></span></td>
+        </tr>
+        <tr>
+            <td><span>200 сомони</span></td>
+            <td><span id="quantity-200"></span></td>
+            <td><span id="sum-200"></span></td>
+        </tr>
+        <tr>
+            <td><span>500 сомони</span></td>
+            <td><span id="quantity-500"></span></td>
+            <td><span id="sum-500"></span></td>
+        </tr>
+        <tr>
+            <td><span>Итого:</span></td>
+            <td><span id="sum-quantity"></span></td>
+            <td><span id="sum-sum"></span></td>
+        </tr>
+        <tr>
+            <td colspan="3">Подпись кассира: __________</td>
+        </tr>
+        <tr>
+            <td colspan="3">Подпись техник-инкассатора: __________</td>
+        </tr>
+
+    </table>
+    <div class="navigation">
+        <button id="back" class="leftBtn"></button>
+        <button id="next" class="rightBtn"></button>
+    </div>
+</body>
+<script>
+
+//    properties = {
+//        date: '2013-01-01', terminal: '001001', address: 'г. Худжанд ул. Гагарина 135', collectNumber: '001001',
+//        collector: '22222', q1: '10', q3: '5', q5: '4', q10: '9', q20: '2', q50: '8', q100: '8', q200: '3', q500: '9'
+//    }
+//
+//    setProperties(properties);
+
+    function setProperties(props){
+        $('#terminal-number').val(props.terminal);
+        $('#address').text(props.address);
+        $('#date').text(props.date);
+        $('#collection-number').text(props.collectNumber);
+        $('#collector').text(props.collector);
+
+        var sum = 0;
+        var tmpSum =0;
+
+        $('#quantity-1').text(props.q1)
+        tmpSum = props.q1 * 1;
+        $('#sum-1').text(tmpSum);
+        sum += tmpSum;
+
+        $('#quantity-3').text(props.q3)
+        tmpSum = props.q3 * 3;
+        $('#sum-3').text(tmpSum);
+        sum += tmpSum;
+
+        $('#quantity-5').text(props.q5);
+        tmpSum = props.q5 * 5;
+        $('#sum-5').text(tmpSum);
+        sum += tmpSum;
+
+        $('#quantity-10').text(props.q10)
+        tmpSum = props.q10 * 10;
+        $('#sum-10').text(tmpSum);
+        sum += tmpSum;
+
+        tmpSum = props.q20 * 20;
+        $('#quantity-20').text(props.q20)
+        $('#sum-20').text(tmpSum);
+        sum += tmpSum;
+
+        tmpSum = props.q50 * 50;
+        $('#quantity-50').text(props.q50)
+        $('#sum-50').text(tmpSum);
+        sum += tmpSum;
+
+        tmpSum = props.q100 * 100;
+        $('#quantity-100').text(props.q100)
+        $('#sum-100').text(tmpSum);
+        sum += tmpSum;
+
+        tmpSum = props.q200 * 200;
+        $('#quantity-200').text(props.q200)
+        $('#sum-200').text(tmpSum);
+        sum += tmpSum;
+
+        tmpSum = props.q500 * 500;
+        $('#quantity-500').text(props.q500);
+        $('#sum-500').text(tmpSum);
+        sum += tmpSum;
+
+        $('#sum-quantity').text(
+                eval(props.q1) + eval(props.q3) + eval(props.q5) + eval(props.q10) + eval(props.q20)
+                        + eval(props.q50) + eval(props.q100) + eval(props.q200) + eval(props.q500)
+        );
+        $('#sum-sum').text(sum);
+    };
+
+</script>
+</html>

@@ -1,4 +1,4 @@
-<!DOCUMENT html>
+﻿<!DOCUMENT html>
 <html>
 	<head>
         <title>1</title>
@@ -34,7 +34,9 @@
 			</div>
 
 			<div class="footer">
-				
+				<span id="terminal-number"></span>
+				<span id="address"></span>
+				<span id="call-center"></span>
 			</div>
 			
 		</form>
@@ -45,7 +47,19 @@
 		document.getElementById('top-services').innerHTML = html;
 
 		var html1 = new EJS({url: 'templates/main.ejs'}).render(main);
-		document.getElementById('main-services').innerHTML = html1;		
+		document.getElementById('main-services').innerHTML = html1;
+
+//        var properties = "properties": {
+//            "address": "ул. Гагарина 135(Test)",
+//                    "call-center": "92-868-78-78",
+//                    "terminal-number": "001001"
+//        };
+
+        function setProperties(param){
+            $(".terminal-number").text(param.terminal-number);
+            $(".address").text(param.address);
+            $(".call-center").text(param.call-center);
+        }
 	</script>
 
 </html>

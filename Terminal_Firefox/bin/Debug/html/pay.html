@@ -1,13 +1,23 @@
-<!DOCUMENT html>
+﻿<!DOCUMENT html>
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<script type="text/javascript" src="js/script.js"></script>
 		<script type="text/javascript" src="js/jquery.js"></script>
         <title>4</title>
+        
+        <style>
+            .purpleText {
+                font-size: 40px;
+                color: purple;
+                text-align: center;
+            }
+        </style>
 	</head>
 	
 	<body>
+    
+    
 
 		<embed class="top-ad" src="ads/1.swf" />
 
@@ -20,16 +30,16 @@
         <div class="nums" id="nums">
             <table>
                 <tr>
-                    <td><div class="bordered label">Купюра</div></td>
-                    <td><div id="banknote" class="bordered label"></div></td>
+                    <td><div class="bordered label purpleText">Купюра</div></td>
+                    <td><div id="banknote" class="bordered label purpleText"></div></td>
                 </tr>
                 <tr>
-                    <td><div class="bordered label">Коммисия</div></td>
-                    <td><div id="commission" class="bordered label"></div></td>
+                    <td><div class="bordered label purpleText">Коммисия</div></td>
+                    <td><div id="commission" class="bordered label purpleText"></div></td>
                 </tr>
                 <tr>
-                    <td><div class="bordered label">Сумма</div></td>
-                    <td><div id="sum" class="bordered label"></div></td>
+                    <td><div class="bordered label purpleText">Сумма</div></td>
+                    <td><div id="sum" class="bordered label purpleText"></div></td>
                 </tr>
                 <!--<tr>-->
                     <!--<td><div class="bordered label"></div></td>-->
@@ -41,8 +51,15 @@
         <div class="bordered right-banner" id="right"><embed src="ads/video_moneyin.swf" /></div>
 
         <div class="navigation">
-            <button id="back" class="leftBtn" onclick="goDependent()"></button>
-            <button id="next" class="rightBtn" onclick="goPay()" disabled></button>
+            <button id="back" class="leftBtn"></button>
+            <button id="next" class="rightBtn" disabled></button>
         </div>
 	</body>
+
+    <script>
+        function enable(){
+            $("#next").removeAttr('disabled');
+            $("#back").attr('disabled', 'disabled');
+        }
+    </script>
 </html>

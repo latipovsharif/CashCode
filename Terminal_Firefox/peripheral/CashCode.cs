@@ -78,12 +78,14 @@ namespace Terminal_Firefox.peripheral {
                 while (_flag) {
                     WriteToPort(preparedCommand);
                     var bytes = ReadFromPort();
-                    ParseMessage(bytes);
-                    if (!_newCommand) continue;
-                    WriteToPort(_command);
-                    bytes = ReadFromPort();
-                    ParseMessage(bytes);
-                    _newCommand = false;
+                    if (bytes != null && bytes.Length > 0) {
+                        ParseMessage(bytes);
+                        if (!_newCommand) continue;
+                        WriteToPort(_command);
+                        bytes = ReadFromPort();
+                        ParseMessage(bytes);
+                        _newCommand = false;
+                    }
                 }
             } else {
                 // Todo block terminal
@@ -113,10 +115,15 @@ namespace Terminal_Firefox.peripheral {
         }
 
         private byte[] ReadFromPort() {
-            Thread.Sleep(100);
-            var answer = new byte[_port.BytesToRead];
-            _port.Read(answer, 0, _port.BytesToRead);
-            return answer;
+            try {
+                Thread.Sleep(100);
+                var answer = new byte[_port.BytesToRead];
+                _port.Read(answer, 0, _port.BytesToRead);
+                return answer;
+            } catch(Exception exception) {
+                Log.Error("Не могу прочитать данные из порта", exception);
+            }
+            return null;
         }
 
         private void ParseMessage(byte[] data) {

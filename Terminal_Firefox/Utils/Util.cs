@@ -6,16 +6,10 @@ using NLog;
 namespace Terminal_Firefox.Utils {
     public static class Util {
 
-
-
         public enum ServiceTypes {
             MainService = 0,
             Service = 1
         }
-
-
-
-       
 
         //int a;
         //_browser.AddMessageEventListener("previous", s => a = int.Parse(s));
@@ -41,8 +35,27 @@ namespace Terminal_Firefox.Utils {
             browser.Document.Head.AppendChild(innerHtml);
         }
 
-        public static double GetCommission(int amount, int serviceId) {
-            return 1;
+        
+        public static void NavigateTo(GeckoWebBrowser browser, CurrentWindow window) {
+            string location = @"\html\index.html";
+            switch (window) {
+                case CurrentWindow.Dependent:
+                    location = @"\html\dependent.html";
+                    break;
+                case CurrentWindow.EnterNumber:
+                    location = @"\html\enter_number.html";
+                    break;
+                case CurrentWindow.Pay:
+                    location = @"\html\pay.html";
+                    break;
+                case CurrentWindow.Encashment:
+                    location = @"\html\encashment.html";
+                    break;
+                case CurrentWindow.MakeEncashment:
+                    location = @"\html\make_encashment.html";
+                    break;
+            }
+            browser.Navigate(Directory.GetCurrentDirectory() + location);
         }
     }
 }

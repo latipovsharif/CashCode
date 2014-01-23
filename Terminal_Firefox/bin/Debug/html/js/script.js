@@ -20,16 +20,16 @@ function mouseDown(img) {
 }
 /* Animate button click */
 
-
-function goDependent() {
-    window.location = "dependent.html";
-}
-
-function goEnterNumber() {
-    window.location = "enter_number.html";
-}
-
-function goPay(){
-    window.location = "pay.html"
-}
+//
+//function goDependent() {
+//    window.location = "dependent.html";
+//}
+//
+//function goEnterNumber() {
+//    window.location = "enter_number.html";
+//}
+//
+//function goPay(){
+//    window.location = "pay.html"
+//}
 
