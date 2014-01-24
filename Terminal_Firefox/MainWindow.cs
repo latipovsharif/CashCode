@@ -1,14 +1,13 @@
 ﻿using System;
 using System.Configuration;
-using System.IO;
-using System.Windows.Forms;
 using System.Threading;
+using System.Windows.Forms;
 using Gecko;
 using Gecko.DOM;
 using NLog;
-using Terminal_Firefox.Utils;
 using Terminal_Firefox.classes;
 using Terminal_Firefox.peripheral;
+using Terminal_Firefox.Utils;
 
 namespace Terminal_Firefox {
     public partial class MainWindow : Form {
@@ -24,7 +23,7 @@ namespace Terminal_Firefox {
         private short _mainServiceId; // If clicked main service in main window will set the value
         private bool _clickedTopButton; // If service clicked
         private Collector _collector = new Collector();
-        private TerminalSettings _terminalSettings = TerminalSettings.Instance;
+        private readonly TerminalSettings _terminalSettings = TerminalSettings.Instance;
 
 
         public MainWindow() {
@@ -109,18 +108,24 @@ namespace Terminal_Firefox {
                     toAppend = _terminalSettings.GetSettings();
                     Log.Debug(String.Format("Current window id is {0}", CurrentWindow.Main));
                     break;
+
                 case (int) CurrentWindow.Dependent:
                     toAppend = Util.GetSubServices(_mainServiceId, Util.ServiceTypes.MainService);
                     Log.Debug(String.Format("Current window id is {0}", CurrentWindow.Dependent));
                     break;
+
                 case (int) CurrentWindow.EnterNumber:
+                    Util.AppendImageElement(_browser, "leftBanner", _payment.id_uslugi);
+                    Util.AppendImageElement(_browser, "rightBanner", _payment.id_uslugi);
                     toAppend = Util.GetSubServices(_payment.id_uslugi, Util.ServiceTypes.Service);
                     property = _payment.nomer;
                     Log.Debug(String.Format("Current window id is {0}", CurrentWindow.EnterNumber));
                     break;
+
                 case (int) CurrentWindow.Pay:
                     var element = (GeckoHtmlElement)_browser.Window.Document.GetElementById("entered-number");
-                    
+                    string commission = Rate.GetCommissionString(_payment.id_uslugi);
+                    Util.AppendText(_browser, commission, "leftBanner");
                     // Ensure that entered number is not technical number for encashment
                     if (_payment.nomer.Equals(ConfigurationManager.AppSettings["encashmentCode"])) {
                         Util.NavigateTo(_browser, CurrentWindow.Encashment);

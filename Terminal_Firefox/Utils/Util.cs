@@ -57,5 +57,17 @@ namespace Terminal_Firefox.Utils {
             }
             browser.Navigate(Directory.GetCurrentDirectory() + location);
         }
+
+        public static void AppendImageElement(GeckoWebBrowser browser, string elementId, int path) {
+            var innerHtml = browser.Document.CreateElement("img");
+            innerHtml.SetAttribute("src", "images/service_logos/" + path + "_m.png");
+            innerHtml.SetAttribute("width", "100%");
+            innerHtml.SetAttribute("height", "100%");
+            browser.Document.GetElementById(elementId).AppendChild(innerHtml);
+        }
+
+        public static void AppendText(GeckoWebBrowser browser, string commission, string elementId) {
+            browser.Document.GetElementById(elementId).TextContent = commission;
+        }
     }
 }

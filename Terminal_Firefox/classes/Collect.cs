@@ -7,7 +7,7 @@ namespace Terminal_Firefox.classes {
         public Collector collector = new Collector();
         public string date_inkass { get; set; }
         public int summa { get; set; }
-        public string inkass_id { get; set; }
+        public int inkass_id { get; set; }
 
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -16,14 +16,13 @@ namespace Terminal_Firefox.classes {
             this.collector = collector;
             
             try {
-                string currentCollect = GetCurrentCollect();
-                if (!string.IsNullOrEmpty(currentCollect)) {
+                if (TerminalSettings.Instance.CollectionId > 0) {
                     // Set collector and current collection date
                     DBWrapper.Instance.Command.CommandText =
                         "SELECT " +
                                 "(n1 * 1 + n3 * 3 + n5 * 5 + n10 * 10 + n20 * 20 + n50 * 50 + n100 * 100 + n200 * 200 + n500 * 500) AS sum " +
                         "FROM collection WHERE collect_id = @collectId";
-                    DBWrapper.Instance.Command.Parameters.Add("@collectId", currentCollect);
+                    DBWrapper.Instance.Command.Parameters.Add("@collectId", TerminalSettings.Instance.CollectionId);
                     summa = (int)DBWrapper.Instance.Command.ExecuteScalar();
                 }
             } catch (Exception ex) {
@@ -33,23 +32,23 @@ namespace Terminal_Firefox.classes {
             }
 
             date_inkass = DateTime.Now.ToString("yyyy-MM-dd");
-            inkass_id = GetCurrentCollect();
+            inkass_id = TerminalSettings.Instance.CollectionId;
         }
 
 
-        public static string GetCurrentCollect() {
-            string value = null;
-            try {
-                DBWrapper.Instance.Command.CommandText =
-                    "SELECT top(1) value FROM settings where variable = 'current_collect_id'";
-                value = DBWrapper.Instance.Command.ExecuteScalar().ToString();
-            } catch (Exception ex) {
-                Log.Error("Невозможно получить номер инкассации", ex);
-            } finally {
-                DBWrapper.Instance.Command.Parameters.Clear();
-            }
-            return value;
-        }
+        //public static string GetCurrentCollect() {
+        //    string value = null;
+        //    try {
+        //        DBWrapper.Instance.Command.CommandText =
+        //            "SELECT top(1) value FROM settings where variable = 'current_collect_id'";
+        //        value = DBWrapper.Instance.Command.ExecuteScalar().ToString();
+        //    } catch (Exception ex) {
+        //        Log.Error("Невозможно получить номер инкассации", ex);
+        //    } finally {
+        //        DBWrapper.Instance.Command.Parameters.Clear();
+        //    }
+        //    return value;
+        //}
 
         
         public JObject GetCollectionInfo(string collectId) {
@@ -109,7 +108,7 @@ namespace Terminal_Firefox.classes {
         public static void InsertBanknote (int val) {
             try {
                 DBWrapper.Instance.Command.CommandText = "update collection set n" + val + " = n" + val +
-                                                                    " + 1 where collect_id = " + GetCurrentCollect();
+                                                                    " + 1 where collect_id = " + TerminalSettings.Instance.CollectionId;
                 DBWrapper.Instance.Command.ExecuteNonQuery();
             } catch (Exception exception) {
                 Log.Fatal(String.Format("Невозможно запистать купюру: {0} в таблицу инкассации", val), exception);            

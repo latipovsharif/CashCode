@@ -19,7 +19,7 @@ namespace Terminal_Firefox.classes {
         public long status { get; set; }
         public string date_create { get { return DateTime.Now.ToString("yyyy-MM-dd"); } }
         public string date_send { get { return DateTime.Now.ToString("yyyy-MM-dd"); } }
-        public string id_inkas { get { return Collect.GetCurrentCollect(); } }
+        public int id_inkas { get { return TerminalSettings.Instance.CollectionId; } }
         public int val1 { get; set; }
         public int val3 { get; set; }
         public int val5 { get; set; }
@@ -37,33 +37,6 @@ namespace Terminal_Firefox.classes {
 
         public bool Save() {
             try {
-                //DBWrapper.Instance.Command.CommandText = "insert into payments(" +
-                //                                             "service_id, " +
-                //                                             "number, " +
-                //                                             "sec_number, " +
-                //                                             "[check], " +
-                //                                             "date_create, " +
-                //                                             "sum, " +
-                //                                             "comission, " +
-                //                                             "hash, " +
-                //                                             "state, " +
-                //                                             "rate, " +
-                //                                             "curr, " +
-                //                                             "n1, n3, n10, n20, n50, n100, n200, n500) " +
-                //                                         "values(" +
-                //                                             "@service, " +
-                //                                             "@number, " +
-                //                                             "@sec_number, " +
-                //                                             "@check, " +
-                //                                             "@date_create, " +
-                //                                             "@sum, " +
-                //                                             "@comission, " +
-                //                                             "@hash, " +
-                //                                             "@rate, " +
-                //                                             "@curr, " +
-                //                                             "@n1, @n3, @n5, @n10, @n20, @n50, @n100, @n200, @n500" +
-                //                                         ")";
-
                 DBWrapper.Instance.Command.CommandText =
                     "INSERT INTO payments (service_id, number, sec_number, [check], date_create,  sum, comission, hash, state, n1, n3, n5, n10, n20, n50, n100, n200, n500, rate, curr) " +
                                    "VALUES(@service, @number, @sec_number, @check, @date_create, @sum, @comission, @hash, 0, @n1, @n3, @n5, @n10, @n20, @n50, @n100, @n200, @n500, @rate, @curr);";

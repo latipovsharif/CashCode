@@ -8,8 +8,16 @@
 		<script type="text/javascript" src="js/script.js"></script>
 		<script type="text/javascript" src="js/ejs/ejs_production.js"></script>
 		<script type="text/javascript" src="js/data/services.js"></script>
+
+        <style>
+            .footer_text {
+                font-size: 30px;
+                margin-right: 10px;
+                color: purple;
+            }
+        </style>
 	</head>
-	
+
 	<body>
 
 		<embed class="top-ad" src="ads/1.swf" />
@@ -34,9 +42,9 @@
 			</div>
 
 			<div class="footer">
-				<span id="terminal-number"></span>
-				<span id="address"></span>
-				<span id="call-center"></span>
+				<span class="footer_text">Терминал №: <span id="terminal-number" class="footer_text"></span>|</span>
+				<span class="footer_text">Адрес: <span id="address" class="footer_text"></span>|</span>
+				<span class="footer_text">Контакт центр: <span id="call-center" class="footer_text"></span></span>
 			</div>
 			
 		</form>
@@ -55,11 +63,12 @@
 //                    "terminal-number": "001001"
 //        };
 
-        function setProperties(param){
-            $(".terminal-number").text(param.terminal-number);
-            $(".address").text(param.address);
-            $(".call-center").text(param.call-center);
+        var properties = { address: 'г. Худжанд ул. Гагарина 135(Test)',call_center: '92-868-78-78', terminal_number: '001001'};
+                  setProperties();
+        function setProperties(){
+            $("#terminal-number").text(properties.terminal_number);
+            $("#address").text(properties.address);
+            $("#call-center").text(properties.call_center);
         }
 	</script>
-
 </html>

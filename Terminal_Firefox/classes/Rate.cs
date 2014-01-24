@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using NLog;
 using System.Data.SqlServerCe;
 
@@ -32,6 +33,27 @@ namespace Terminal_Firefox.classes {
             }
 
             return value;
+        }
+
+        public static string GetCommissionString(int serviceId) {
+            string result = "";
+            try {
+                DBWrapper.Instance.Command.CommandText =
+                    "select from_sum, to_sum, rate, is_percent from comission where service_id = @serviceId";
+                DBWrapper.Instance.Command.Parameters.Add("@serviceId", serviceId);
+                SqlCeDataReader reader = DBWrapper.Instance.Command.ExecuteReader();
+                while (reader.Read()) {
+                    result += "От " + reader[0] + " до " + reader[1] + " комиссия " + reader[2] +
+                              ((bool) reader[3] ? "%" : "") + "\r\n";
+                }
+            } catch (Exception ex) {
+                Log.Error(
+                    String.Format("Невозможно получить комиссию для услуги с id = {0}", serviceId),
+                    ex);
+            } finally {
+                DBWrapper.Instance.Command.Parameters.Clear();
+            }
+            return result;
         }
     }
 }

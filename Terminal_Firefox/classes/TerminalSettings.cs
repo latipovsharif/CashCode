@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.SqlServerCe;
 using NLog;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
 namespace Terminal_Firefox.classes {
@@ -16,7 +17,7 @@ namespace Terminal_Firefox.classes {
         private string CallCenter { get; set; }
         private bool OfflineMode { get; set; }
         private int HeartbeatInterval { get; set; }
-        private int CollectionId { get; set; }
+        public int CollectionId { get; set; }
         private string TerminalPassword { get; set; }
 
         private TerminalSettings() {
@@ -59,12 +60,17 @@ namespace Terminal_Firefox.classes {
         }
 
         public string GetSettings() {
-            var property = new JObject(
-                new JProperty("address", AddressRu), 
-                new JProperty("call-center", CallCenter), 
-                new JProperty("terminal-number", TerminalNumber)
-                );
-            return property.ToString();
+            //var property = new JProperty("properties", new JObject(
+            //    new JProperty("address", AddressRu), 
+            //    new JProperty("call-center", CallCenter), 
+            //    new JProperty("terminal-number", TerminalNumber)        //Todo make it right way
+            //    ), new JsonSerializerSettings() {});
+            //return property.ToString();
+
+            return "var properties = { address: '" + AddressRu + "'," +
+                                       "call_center: '" + CallCenter + "', " +
+                                       "terminal_number: '" + TerminalNumber + "'}";
+
         }
 
     }
