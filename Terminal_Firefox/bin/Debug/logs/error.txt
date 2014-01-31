@@ -1,3 +1,6 @@
-01/24/2014 08:57:41|Error|Service file with id 11 does not found|Terminal_Firefox.Utils.Util.GetSubServices
-01/24/2014 09:42:12|Error|Service file with id 13 does not found|Terminal_Firefox.Utils.Util.GetSubServices
-01/24/2014 09:42:15|Error|Service file with id 12 does not found|Terminal_Firefox.Utils.Util.GetSubServices
+01/31/2014 09:53:06|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
+01/31/2014 09:53:58|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
+01/31/2014 10:13:47|Error|Service file with id 16 does not found|Terminal_Firefox.Utils.Util.GetSubServices
+01/31/2014 10:13:59|Error|Service file with id 9 does not found|Terminal_Firefox.Utils.Util.GetSubServices
+01/31/2014 10:14:12|Error|Service file with id 47 does not found|Terminal_Firefox.Utils.Util.GetSubServices
+01/31/2014 10:14:19|Error|Service file with id 12 does not found|Terminal_Firefox.Utils.Util.GetSubServices

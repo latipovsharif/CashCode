@@ -54,6 +54,9 @@ namespace Terminal_Firefox.Utils {
                 case CurrentWindow.MakeEncashment:
                     location = @"\html\make_encashment.html";
                     break;
+                case CurrentWindow.BlockTerminal:
+                    location = @"\html\terminal_blocked.html";
+                    break;
             }
             browser.Navigate(Directory.GetCurrentDirectory() + location);
         }

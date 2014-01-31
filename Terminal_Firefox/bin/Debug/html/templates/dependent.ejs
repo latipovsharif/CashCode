@@ -1,4 +1,5 @@
 <% for(var i = 0; i < dependent.length; i++) { %>
-	<img src="<%= dependent[i].image %>" class="<%= dependent[i].class %>" id="<%= dependent[i].id %>"
-         name="img1" onmousedown="mouseDown(this);" onmouseup="mouseUp(this);">
+    <button id="<%= dependent[i].id %>"
+        style="background: url('<%= dependent[i].image + dependent[i].id + ".png" %>')"
+        class="<%= dependent[i].class %>" onmousedown="mDown(this)" onmouseup="mUp(this)"></button>
 <% } %>

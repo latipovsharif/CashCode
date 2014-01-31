@@ -1,5 +1,6 @@
 <% for(var i = 0; i < main.length; i++) { %>
-	<img src="<%= main[i].image %>" data-type="service" class="<%= main[i].class %>" id="<%= main[i].id %>"
-         name="img1" onmousedown="mouseDown(this);" onmouseup="mouseUp(this);">
-<% } %>	
+    <button id="<%= main[i].id %>" data-type="service"
+            style="background: url('<%= main[i].image + main[i].id + ".png" %>')"
+            class="<%= main[i].class %>" onmousedown="mDown(this)" onmouseup="mUp(this)"></button>
+<% } %>
 

@@ -5,6 +5,7 @@
         EnterNumber=3,
         Pay=4,
         Encashment=10,
-        MakeEncashment=11
+        MakeEncashment=11,
+        BlockTerminal=12
     }
 }

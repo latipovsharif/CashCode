@@ -45,7 +45,21 @@ body {
 	margin-bottom: 20px;
 }
 
-.rightBtn 
+.topBtn {
+    border: none;
+    margin: 3px;
+    width: 200px;
+    height: 119px;
+}
+
+.mainBtn {
+    border: none;
+    margin: 3px;
+    width: 272px;
+    height: 192px;
+}
+
+.rightBtn
 {
     border: none;
     width: 221px;
@@ -97,7 +111,7 @@ body {
     margin-left: 530px;
 }
 
-.nums 
+.numbers
 {
     position: fixed;
     left: 50%;
@@ -106,6 +120,13 @@ body {
     margin-top: -300px;
     width: 560px;
     margin-left: -280px;
+}
+
+.keyBtn {
+    border: none;
+    margin: 3px;
+    height: 110px;
+    width: 180px;
 }
     
 .bordered

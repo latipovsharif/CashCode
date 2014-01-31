@@ -5,16 +5,24 @@ using System.Configuration;
 using NLog;
 
 namespace Terminal_Firefox.peripheral {
-    
+
     public delegate void MoneyAccepted(short money);
+
+    public delegate void CashCodeError();
 
     public class CashCode {
 
         public event MoneyAccepted MoneyAcceptedHandler;
+        public event CashCodeError CashCodeErrorHandler;
 
         private void OnMoneyAccepted(short money) {
             MoneyAccepted handler = MoneyAcceptedHandler;
             if (handler != null) handler(money);
+        }
+
+        private void cashCodeError() {
+            CashCodeError error = CashCodeErrorHandler;
+            if (error != null) { error();}
         }
 
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
@@ -40,8 +48,7 @@ namespace Terminal_Firefox.peripheral {
                 _port.Open();
                 _port.WriteTimeout = 400;
                 _port.ReadTimeout = 400;
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 Log.Fatal(String.Format("Невозможно открыть порт {0}", ConfigurationManager.AppSettings["com"]), ex);
             }
         }
@@ -88,7 +95,7 @@ namespace Terminal_Firefox.peripheral {
                     }
                 }
             } else {
-                // Todo block terminal
+                cashCodeError();
             }
         }
 
@@ -101,17 +108,20 @@ namespace Terminal_Firefox.peripheral {
                     if ((crc & 0x0001) == 1) {
                         crc >>= 1;
                         crc ^= (char) POLYNOMIAL;
-                    }
-                    else crc >>= 1;
+                    } else crc >>= 1;
                 }
             }
             return crc;
         }
 
         private void WriteToPort(byte[] data) {
-            _port.WriteTimeout = 30;
-            _port.DiscardOutBuffer();
-            _port.Write(data, 0, data.Length);
+            try {
+                _port.WriteTimeout = 30;
+                _port.DiscardOutBuffer();
+                _port.Write(data, 0, data.Length);
+            } catch (Exception exception) {
+                Log.Error("Невозможно записать данные в com порт", exception);
+            }
         }
 
         private byte[] ReadFromPort() {
@@ -120,7 +130,7 @@ namespace Terminal_Firefox.peripheral {
                 var answer = new byte[_port.BytesToRead];
                 _port.Read(answer, 0, _port.BytesToRead);
                 return answer;
-            } catch(Exception exception) {
+            } catch (Exception exception) {
                 Log.Error("Не могу прочитать данные из порта", exception);
             }
             return null;
@@ -277,55 +287,55 @@ namespace Terminal_Firefox.peripheral {
                     Log.Debug(String.Format("{0} купюра 1 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
-                    OnMoneyAccepted(1);                    
+                    OnMoneyAccepted(1);
                     break;
                 case (byte) BillTypes.Three:
                     Log.Debug(String.Format("{0} купюра 3 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
-                    OnMoneyAccepted(3);                    
+                    OnMoneyAccepted(3);
                     break;
                 case (byte) BillTypes.Five:
                     Log.Debug(String.Format("{0} купюра 5 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
-                    OnMoneyAccepted(5);                    
+                    OnMoneyAccepted(5);
                     break;
                 case (byte) BillTypes.Ten:
                     Log.Debug(String.Format("{0} купюра 10 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
-                    OnMoneyAccepted(10);                    
+                    OnMoneyAccepted(10);
                     break;
                 case (byte) BillTypes.Twenty:
                     Log.Debug(String.Format("{0} купюра 20 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
-                    OnMoneyAccepted(20);                    
+                    OnMoneyAccepted(20);
                     break;
                 case (byte) BillTypes.Fifty:
                     Log.Debug(String.Format("{0} купюра 50 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
-                    OnMoneyAccepted(50);                    
+                    OnMoneyAccepted(50);
                     break;
                 case (byte) BillTypes.Hundred:
                     Log.Debug(String.Format("{0} купюра 100 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
-                    OnMoneyAccepted(100);                    
+                    OnMoneyAccepted(100);
                     break;
                 case (byte) BillTypes.TwoHundred:
                     Log.Debug(String.Format("{0} купюра 200 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
-                    OnMoneyAccepted(200);                    
+                    OnMoneyAccepted(200);
                     break;
                 case (byte) BillTypes.FiveHundred:
                     Log.Debug(String.Format("{0} купюра 500 сомони", action), bill);
                     _command = PrepareCommand(CashCodeCommands.AckResponse);
                     _newCommand = true;
-                    OnMoneyAccepted(500);                    
+                    OnMoneyAccepted(500);
                     break;
             }
         }
