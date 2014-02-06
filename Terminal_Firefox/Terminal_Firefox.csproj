@@ -63,6 +63,7 @@
     <Compile Include="classes\Payment.cs" />
     <Compile Include="classes\Rate.cs" />
     <Compile Include="classes\TerminalSettings.cs" />
+    <Compile Include="Communication.cs" />
     <Compile Include="DBWrapper.cs" />
     <Compile Include="MainWindow.cs">
       <SubType>Form</SubType>

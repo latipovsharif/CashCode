@@ -8,21 +8,14 @@ namespace Terminal_Firefox.peripheral {
 
     public delegate void MoneyAccepted(short money);
 
-    public delegate void CashCodeError();
 
     public class CashCode {
 
         public event MoneyAccepted MoneyAcceptedHandler;
-        public event CashCodeError CashCodeErrorHandler;
 
         private void OnMoneyAccepted(short money) {
             MoneyAccepted handler = MoneyAcceptedHandler;
             if (handler != null) handler(money);
-        }
-
-        private void cashCodeError() {
-            CashCodeError error = CashCodeErrorHandler;
-            if (error != null) { error();}
         }
 
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
@@ -95,7 +88,6 @@ namespace Terminal_Firefox.peripheral {
                     }
                 }
             } else {
-                cashCodeError();
             }
         }
 

@@ -30,13 +30,6 @@ namespace Terminal_Firefox {
             try {
                 InitializeComponent();
 
-                _timer = new System.Threading.Timer(WaitTimeIsUp);
-
-                _thrCashCode = new Thread(_cashCode.StartPolling) {IsBackground = true, Name = "Poll"};
-                _thrCashCode.Start();
-                _cashCode.Reset();
-                _cashCode.MoneyAcceptedHandler += AcceptedBanknote;
-
                 GeckoPreferences.User["extensions.blocklist.enabled"] = false;
                 Util.NavigateTo(_browser, CurrentWindow.Main);
 
@@ -44,6 +37,14 @@ namespace Terminal_Firefox {
                 _browser.DocumentCompleted += (s, e) => DocumentReady();
 
                 Controls.Add(_browser);
+
+                _timer = new System.Threading.Timer(WaitTimeIsUp);
+
+                _thrCashCode = new Thread(_cashCode.StartPolling) {IsBackground = true, Name = "Poll"};
+                _thrCashCode.Start();
+                _cashCode.Reset();
+                _cashCode.MoneyAcceptedHandler += AcceptedBanknote;
+                
             } catch (Exception exception) {
                 Log.Error(exception);
             }
@@ -54,6 +55,7 @@ namespace Terminal_Firefox {
             try {
                 switch (_currentWindow) {
                     case (int) CurrentWindow.Main:
+                    case (int)CurrentWindow.BlockTerminal:
                         _timer.Change(Timeout.Infinite, Timeout.Infinite);
                         break;
                     case (int) CurrentWindow.Pay:
@@ -71,7 +73,7 @@ namespace Terminal_Firefox {
 
 
         private void NavigateIndex(CurrentWindow window) {
-            Util.NavigateTo(_browser, CurrentWindow.Main);
+            Util.NavigateTo(_browser, window);
         }
 
         private void AcceptedBanknote(short banknote) {

@@ -4,3 +4,83 @@
 01/31/2014 10:13:59|Error|Service file with id 9 does not found|Terminal_Firefox.Utils.Util.GetSubServices
 01/31/2014 10:14:12|Error|Service file with id 47 does not found|Terminal_Firefox.Utils.Util.GetSubServices
 01/31/2014 10:14:19|Error|Service file with id 12 does not found|Terminal_Firefox.Utils.Util.GetSubServices
+01/31/2014 11:29:45|Error|Service file with id 19 does not found|Terminal_Firefox.Utils.Util.GetSubServices
+01/31/2014 11:29:51|Error|Service file with id 47 does not found|Terminal_Firefox.Utils.Util.GetSubServices
+01/31/2014 11:36:26|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:37:13|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:38:22|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:38:55|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
+01/31/2014 11:38:57|Error|System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseUInt32(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.UInt16.Parse(String s, NumberStyles style, NumberFormatInfo info)
+   at System.UInt16.Parse(String s)
+   at Terminal_Firefox.MainWindow.DocumentReady() in D:\development\vs\Terminal_Firefox\Terminal_Firefox\MainWindow.cs:line 146|Terminal_Firefox.MainWindow.DocumentReady
+01/31/2014 11:40:42|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:40:46|Error|System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseUInt32(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.UInt16.Parse(String s, NumberStyles style, NumberFormatInfo info)
+   at System.UInt16.Parse(String s)
+   at Terminal_Firefox.MainWindow.DocumentReady() in D:\development\vs\Terminal_Firefox\Terminal_Firefox\MainWindow.cs:line 147|Terminal_Firefox.MainWindow.DocumentReady
+01/31/2014 11:41:59|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:42:00|Error|System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseUInt32(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.UInt16.Parse(String s, NumberStyles style, NumberFormatInfo info)
+   at System.UInt16.Parse(String s)
+   at Terminal_Firefox.MainWindow.DocumentReady() in D:\development\vs\Terminal_Firefox\Terminal_Firefox\MainWindow.cs:line 147|Terminal_Firefox.MainWindow.DocumentReady
+01/31/2014 11:45:02|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:45:40|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:45:52|Error|System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseUInt32(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.UInt16.Parse(String s, NumberStyles style, NumberFormatInfo info)
+   at System.UInt16.Parse(String s)
+   at Terminal_Firefox.MainWindow.DocumentReady() in D:\development\vs\Terminal_Firefox\Terminal_Firefox\MainWindow.cs:line 148|Terminal_Firefox.MainWindow.DocumentReady
+01/31/2014 11:47:20|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:47:24|Error|System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseUInt32(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.UInt16.Parse(String s, NumberStyles style, NumberFormatInfo info)
+   at System.UInt16.Parse(String s)
+   at Terminal_Firefox.MainWindow.DocumentReady() in D:\development\vs\Terminal_Firefox\Terminal_Firefox\MainWindow.cs:line 148|Terminal_Firefox.MainWindow.DocumentReady
+01/31/2014 11:47:46|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:48:06|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:50:07|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:50:32|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:52:19|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:52:21|Error|System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseUInt32(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.UInt16.Parse(String s, NumberStyles style, NumberFormatInfo info)
+   at System.UInt16.Parse(String s)
+   at Terminal_Firefox.MainWindow.DocumentReady() in D:\development\vs\Terminal_Firefox\Terminal_Firefox\MainWindow.cs:line 148|Terminal_Firefox.MainWindow.DocumentReady
+01/31/2014 11:52:33|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:52:35|Error|System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseUInt32(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.UInt16.Parse(String s, NumberStyles style, NumberFormatInfo info)
+   at System.UInt16.Parse(String s)
+   at Terminal_Firefox.MainWindow.DocumentReady() in D:\development\vs\Terminal_Firefox\Terminal_Firefox\MainWindow.cs:line 148|Terminal_Firefox.MainWindow.DocumentReady
+01/31/2014 11:53:27|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:53:29|Error|System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseUInt32(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.UInt16.Parse(String s, NumberStyles style, NumberFormatInfo info)
+   at System.UInt16.Parse(String s)
+   at Terminal_Firefox.MainWindow.DocumentReady() in D:\development\vs\Terminal_Firefox\Terminal_Firefox\MainWindow.cs:line 148|Terminal_Firefox.MainWindow.DocumentReady
+01/31/2014 11:53:48|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:57:28|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:57:53|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:58:15|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 11:58:23|Error|System.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseUInt32(String value, NumberStyles options, NumberFormatInfo numfmt)
+   at System.UInt16.Parse(String s, NumberStyles style, NumberFormatInfo info)
+   at System.UInt16.Parse(String s)
+   at Terminal_Firefox.MainWindow.DocumentReady() in D:\development\vs\Terminal_Firefox\Terminal_Firefox\MainWindow.cs:line 148|Terminal_Firefox.MainWindow.DocumentReady
+01/31/2014 11:59:23|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 15:53:47|Fatal|Невозможно открыть порт com10|Terminal_Firefox.peripheral.CashCode..ctor
+01/31/2014 15:54:00|Error|Service file with id 9 does not found|Terminal_Firefox.Utils.Util.GetSubServices
+01/31/2014 15:54:15|Error|Service file with id 9 does not found|Terminal_Firefox.Utils.Util.GetSubServices
