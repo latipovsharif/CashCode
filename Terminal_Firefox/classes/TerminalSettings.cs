@@ -18,7 +18,7 @@ namespace Terminal_Firefox.classes {
         private bool OfflineMode { get; set; }
         private int HeartbeatInterval { get; set; }
         public int CollectionId { get; set; }
-        private string TerminalPassword { get; set; }
+        public static string TerminalPassword { get; private set; }
         public static readonly string PublicKey = "asdfghjk";
 
         private TerminalSettings() {
