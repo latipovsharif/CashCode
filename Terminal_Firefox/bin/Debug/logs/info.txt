@@ -1,60 +1,68 @@
-01/31/2014 09:35:04|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 09:35:05|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 09:52:25|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 09:52:26|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 09:53:35|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 09:53:36|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 09:53:46|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 09:53:46|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 09:55:02|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 09:55:02|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 10:02:59|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 10:03:00|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 10:13:02|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 10:13:02|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:15:49|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:15:50|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:35:33|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:35:33|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:36:26|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:36:26|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:37:06|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:37:06|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:38:20|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:38:20|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:40:38|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:40:38|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:41:36|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:41:36|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:45:01|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:45:02|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:45:40|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:45:40|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:47:20|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:47:20|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:47:46|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:47:46|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:48:05|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:48:05|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:50:07|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:50:07|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:50:32|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:50:32|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:52:19|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:52:19|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:52:33|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:52:33|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:53:27|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:53:27|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:53:48|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:53:48|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:57:28|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:57:28|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:57:52|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:57:53|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:58:14|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:58:15|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 11:59:23|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 11:59:23|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
-01/31/2014 15:53:47|Info|Запуск приложения...|Terminal_Firefox.Program.Main
-01/31/2014 15:53:47|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 14:53:46|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 14:53:48|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 14:55:27|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 14:55:27|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 14:57:47|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 14:57:47|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 15:13:46|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 15:13:46|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 15:15:50|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 15:15:50|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 16:02:53|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 16:02:54|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 16:04:54|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 16:04:54|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 16:06:25|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 16:06:25|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 16:07:15|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 16:07:16|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 16:09:23|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 16:09:23|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 16:19:00|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 16:19:00|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 16:19:07|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:20:34|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 16:20:34|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 16:20:51|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:21:07|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:21:24|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:21:40|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:21:57|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:22:13|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:22:30|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:22:46|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:23:03|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:23:19|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:23:36|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:23:53|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:24:09|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:24:26|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:24:42|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:24:59|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:25:15|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:25:32|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:25:48|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:26:05|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:39:13|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 16:39:13|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 16:41:38|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 16:41:38|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 16:42:08|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:43:22|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 16:43:22|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 16:50:13|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:52:33|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 16:52:33|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 16:53:39|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:53:59|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:54:16|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:54:32|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:54:49|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:55:06|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:55:22|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:55:39|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 16:59:55|Info|Запуск приложения...|Terminal_Firefox.Program.Main
+02/12/2014 16:59:55|Info|Открываю порт|Terminal_Firefox.peripheral.CashCode..ctor
+02/12/2014 17:00:12|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 17:00:39|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend
+02/12/2014 17:00:57|Info|Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!|Terminal_Firefox.syncrhonization.Communication.SSend

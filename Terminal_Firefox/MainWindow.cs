@@ -24,6 +24,8 @@ namespace Terminal_Firefox {
         private readonly TerminalSettings _terminalSettings = TerminalSettings.Instance;
         private readonly System.Threading.Timer _timer;
         private const ushort TimerDelay = 3000;
+        private readonly Thread _thrSync;
+        private readonly syncrhonization.Synchronization _synchronization = new syncrhonization.Synchronization();
 
 
         public MainWindow() {
@@ -40,8 +42,12 @@ namespace Terminal_Firefox {
 
                 _timer = new System.Threading.Timer(WaitTimeIsUp);
 
+                _thrSync = new Thread(_synchronization.Synchronize) {IsBackground = true, Name = "Synchronization"};
+                _thrSync.Start();
+
                 _thrCashCode = new Thread(_cashCode.StartPolling) {IsBackground = true, Name = "Poll"};
                 _thrCashCode.Start();
+
                 _cashCode.Reset();
                 _cashCode.MoneyAcceptedHandler += AcceptedBanknote;
                 
@@ -275,6 +281,7 @@ namespace Terminal_Firefox {
                     if (clicked.GetAttribute("id").Equals("next") && !clicked.HasAttribute("disabled")) {
                         var input = (GeckoInputElement) _browser.Document.GetElementById("number");
                         _payment.nomer = input.Value;
+                        _payment.nomer2 = ""; // Todo Проверить наличие поля ввода второго номера и если такого поля нет только потом вставить пустую строку
                         Log.Debug(String.Format("Entered number {0}", input.Value));
                         Util.NavigateTo(_browser, CurrentWindow.Pay);
 
@@ -320,7 +327,8 @@ namespace Terminal_Firefox {
                         var password = (GeckoInputElement) _browser.Document.GetElementById("password");
                         _collector = Collector.FindCollector(login.Value, password.Value);
                         if (_collector.Id <= 0) {
-                            MessageBox.Show("Неправильный логин и/или пароль");
+                            const string message = "Неправильный логин и/или пароль"; 
+                            MessageBox.Show(message);
                         } else {
                             Util.NavigateTo(_browser, CurrentWindow.MakeEncashment);
                         }

@@ -13,12 +13,12 @@ namespace Terminal_Firefox.classes {
         private string AddressRu { get; set; }
         private string AddressEn { get; set; }
         private string AddressTj { get; set; }
-        private string TerminalNumber { get; set; }
+        public string TerminalNumber { get; private set; }
         private string CallCenter { get; set; }
         private bool OfflineMode { get; set; }
         private int HeartbeatInterval { get; set; }
         public int CollectionId { get; set; }
-        public static string TerminalPassword { get; private set; }
+        public string TerminalPassword { get; private set; }
         public static readonly string PublicKey = "asdfghjk";
 
         private TerminalSettings() {

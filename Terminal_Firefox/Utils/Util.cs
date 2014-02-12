@@ -4,24 +4,35 @@ using Gecko;
 using NLog;
 
 namespace Terminal_Firefox.Utils {
+
+    /// <summary>
+    /// Типы команд
+    /// </summary>
+    public enum CommandTypes {
+        Link = 1, Payment, Settings
+    }
+
+
     public static class Util {
 
+        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
+
+        /// <summary>
+        /// Типы сервисов
+        /// 1. Главные кнопки
+        /// 2. Кнонки быстрого набора
+        /// </summary>
         public enum ServiceTypes {
             MainService = 0,
             Service = 1
         }
 
-        //int a;
-        //_browser.AddMessageEventListener("previous", s => a = int.Parse(s));
-        //(GeckoHtmlElement)_browser.Window.Document.GetElementById("number").InnerHtml = myString;
-
-
-        private static readonly Logger Log = LogManager.GetCurrentClassLogger();
-
+        
         public static string GetSubServices(short serviceId, ServiceTypes serviceType) {
             try {
-                string path = (serviceType == ServiceTypes.MainService) ? 
-                    "/html/js/data/main_buttons/" : "/html/js/data/services/";
+                string path = (serviceType == ServiceTypes.MainService)
+                                  ? "/html/js/data/main_buttons/"
+                                  : "/html/js/data/services/";
                 return File.ReadAllText(Directory.GetCurrentDirectory() + path + serviceId + ".js");
             } catch (Exception ex) {
                 Log.Error(String.Format("Service file with id {0} does not found", serviceId), ex);
@@ -35,7 +46,6 @@ namespace Terminal_Firefox.Utils {
             browser.Document.Head.AppendChild(innerHtml);
         }
 
-        
         public static void NavigateTo(GeckoWebBrowser browser, CurrentWindow window) {
             string location = @"\html\index.html";
             switch (window) {

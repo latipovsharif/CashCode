@@ -18,7 +18,7 @@ namespace Terminal_Firefox.classes {
                 SqlCeDataReader reader = DBWrapper.Instance.Command.ExecuteReader();
                 while (reader.Read()) {
                     if ((bool) reader[1]) {
-                        value = sum * Convert.ToDouble(reader[0])/100;
+                        value = sum*Convert.ToDouble(reader[0])/100;
                     } else {
                         value = Convert.ToDouble(reader[0]);
                     }
