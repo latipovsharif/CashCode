@@ -1,61 +1,8 @@
-02/12/2014 14:54:10|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-02/12/2014 14:55:29|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-02/12/2014 14:57:48|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-02/12/2014 15:13:46|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
-02/12/2014 15:14:01|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:14:06|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:14:11|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:14:16|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:14:21|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:14:26|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:14:32|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:14:37|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:14:42|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:14:47|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:14:52|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:14:57|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:15:02|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:15:07|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:15:12|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:15:17|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:15:22|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:15:27|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:15:32|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:15:37|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:15:50|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
-02/12/2014 15:16:05|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:16:10|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:16:15|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 15:16:20|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:02:54|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
-02/12/2014 16:02:57|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:03:21|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:04:15|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:04:54|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
-02/12/2014 16:06:25|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
-02/12/2014 16:07:16|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
-02/12/2014 16:07:54|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:07:59|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:08:04|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:08:09|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:08:14|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:08:19|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:08:24|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:08:29|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:08:34|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:09:23|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
-02/12/2014 16:09:42|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:10:02|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:10:22|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:10:42|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:11:02|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:11:22|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:11:42|Error|Невозможно соединиться с сервером '10.10.2.21' на порт '7000'|Terminal_Firefox.syncrhonization.Communication.Autorize
-02/12/2014 16:19:00|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
-02/12/2014 16:19:07|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-02/12/2014 16:20:34|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
-02/12/2014 16:39:13|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
-02/12/2014 16:41:38|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
-02/12/2014 16:43:22|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
-02/12/2014 16:52:33|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
-02/12/2014 16:59:55|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
+02/13/2014 09:09:12|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
+02/13/2014 10:59:41|Error|System.NullReferenceException: Object reference not set to an instance of an object.
+   at Terminal_Firefox.MainWindow.SetAmount(Int16 banknote) in D:\development\vs\Terminal_Firefox\Terminal_Firefox\MainWindow.cs:line 134|Terminal_Firefox.MainWindow.SetAmount
+02/13/2014 11:48:26|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
+02/13/2014 11:49:50|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
+02/13/2014 11:50:32|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
+02/13/2014 11:51:43|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
+02/13/2014 11:53:51|Error|Невозможно обновить статус платежа|Terminal_Firefox.classes.Payment.FinishPayment

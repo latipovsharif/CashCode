@@ -9,7 +9,7 @@ namespace Terminal_Firefox.Utils {
     /// Типы команд
     /// </summary>
     public enum CommandTypes {
-        Link = 1, Payment, Settings
+        Payment = 0, Link = 1, Settings
     }
 
 

@@ -17,7 +17,7 @@ namespace Terminal_Firefox.classes {
         private string CallCenter { get; set; }
         private bool OfflineMode { get; set; }
         private int HeartbeatInterval { get; set; }
-        public int CollectionId { get; set; }
+        public string CollectionId { get; set; }
         public string TerminalPassword { get; private set; }
         public static readonly string PublicKey = "asdfghjk";
 
@@ -30,7 +30,7 @@ namespace Terminal_Firefox.classes {
                     switch (reader[0].ToString()) {
                         case "current_collect_id":
                             try {
-                                CollectionId = Int32.Parse(reader[1].ToString());
+                                CollectionId = reader[1].ToString();
                             } catch (Exception exception) {
                                 Log.Error("Could not get collection id", exception);
                             }

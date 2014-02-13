@@ -65,7 +65,7 @@ namespace Terminal_Firefox {
                         _timer.Change(Timeout.Infinite, Timeout.Infinite);
                         break;
                     case (int) CurrentWindow.Pay:
-                        _cashCode.DisableBillTypes();
+                        //_cashCode.DisableBillTypes();
                         break;
                     default:
                         Action<CurrentWindow> window = NavigateIndex;

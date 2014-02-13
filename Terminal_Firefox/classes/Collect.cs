@@ -7,7 +7,7 @@ namespace Terminal_Firefox.classes {
         public Collector collector = new Collector();
         public string date_inkass { get; set; }
         public int summa { get; set; }
-        public int inkass_id { get; set; }
+        public string inkass_id { get; set; }
 
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
@@ -16,7 +16,7 @@ namespace Terminal_Firefox.classes {
             this.collector = collector;
             
             try {
-                if (TerminalSettings.Instance.CollectionId > 0) {
+                if (!String.IsNullOrWhiteSpace(TerminalSettings.Instance.CollectionId)) {
                     // Set collector and current collection date
                     DBWrapper.Instance.Command.CommandText =
                         "SELECT " +
@@ -104,6 +104,7 @@ namespace Terminal_Firefox.classes {
                 DBWrapper.Instance.Command.Parameters.Clear();
             }
         }
+
 
         public static void InsertBanknote (int val) {
             try {

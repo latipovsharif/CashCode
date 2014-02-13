@@ -7,28 +7,23 @@ namespace Terminal_Firefox.classes {
 
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 
-
         public long id { get; set; }
         public short id_uslugi { get; set; }
         public string nomer { get; set; }
-
         public string nomer2 { get; set; } //Sms information
         public short summa { get; set; }
         public double summa_zachis { get; set; }
         public long status { get; set; }
 
         public string date_create {
-            get { return DateTime.Now.ToString("yyyy-MM-dd"); }
+            get { return ((Int32)(DateTime.Now.Subtract(new DateTime(1970, 1, 1))).TotalSeconds).ToString();} 
             set { }
         }
 
-        public string date_send {
-            get { return DateTime.Now.ToString("yyyy-MM-dd"); }
-            set {}
-        }
+        public string date_send {get; set; }
 
-        public int id_inkas {
-            get { return TerminalSettings.Instance.CollectionId; }
+        public string id_inkas {
+            get { return TerminalSettings.Instance.TerminalNumber + TerminalSettings.Instance.CollectionId; }
             set {}
         }
 
@@ -42,19 +37,12 @@ namespace Terminal_Firefox.classes {
         public short val200 { get; set; }
         public short val500 { get; set; }
 
-        public string hash_id {
-            get { return Guid.NewGuid().ToString(); }
-            set { }
-        }
-
-        public string checkn { get; set; }
+        public string hesh_id { get; set; }
+        public string chekn { get; private set; }
         public double summa_komissia { get; set; }
         public double rate { get; set; }
 
-        public string curr {
-            get { return "TJS"; }
-            set { }
-        }
+        public string curr {get { return ""; } set { }}
 
         public bool Save() {
             try {
@@ -64,11 +52,11 @@ namespace Terminal_Firefox.classes {
                 DBWrapper.Instance.Command.Parameters.Add("@service", id_uslugi);
                 DBWrapper.Instance.Command.Parameters.Add("@number", nomer);
                 DBWrapper.Instance.Command.Parameters.Add("@sec_number", nomer2);
-                DBWrapper.Instance.Command.Parameters.Add("@check", checkn);
+                DBWrapper.Instance.Command.Parameters.Add("@check", chekn);
                 DBWrapper.Instance.Command.Parameters.Add("@date_create", date_create);
                 DBWrapper.Instance.Command.Parameters.Add("@sum", summa);
                 DBWrapper.Instance.Command.Parameters.Add("@comission", summa_komissia);
-                DBWrapper.Instance.Command.Parameters.Add("@hash", hash_id);
+                DBWrapper.Instance.Command.Parameters.Add("@hash", hesh_id);
                 DBWrapper.Instance.Command.Parameters.Add("@n1", val1);
                 DBWrapper.Instance.Command.Parameters.Add("@n3", val3);
                 DBWrapper.Instance.Command.Parameters.Add("@n5", val5);
@@ -112,9 +100,9 @@ namespace Terminal_Firefox.classes {
                                                      id = Int32.Parse(reader[0].ToString()),
                                                      nomer = reader[2].ToString(),
                                                      nomer2 = reader[3].ToString(),
-                                                     checkn = reader[4].ToString(),
+                                                     chekn = reader[4].ToString(),
                                                      date_create = reader[5].ToString(),
-                                                     hash_id = reader[8].ToString(),
+                                                     hesh_id = reader[8].ToString(),
                                                      curr = reader[19].ToString(),
                                                  };
                             short idUslugi, sum, val1, val3, val5, val10, val20, val50, val100, val200, val500;
@@ -158,6 +146,8 @@ namespace Terminal_Firefox.classes {
 
                             double.TryParse(reader[18].ToString(), out rate);
                             result.rate = rate;
+
+                            result.summa_zachis = sum - commission;
                         }
                     }
                 }
@@ -170,13 +160,13 @@ namespace Terminal_Firefox.classes {
         /// Установить статус платежа на завершенный
         /// </summary>
         /// <param name="id">Номер транзакции</param>
-        public static void FinishPayment(int id) {
+        public static void FinishPayment(string id) {
             using (SqlCeConnection connection = new SqlCeConnection()) {
                 connection.ConnectionString = DBWrapper.ConnectionString;
                 using (SqlCeCommand command = new SqlCeCommand()) {
                     try {
                         command.Connection = connection;
-                        command.CommandText = "update payments set status = 1 where id = @id";
+                        command.CommandText = "update payments set state = 1 where hash = @id";
                         command.Parameters.Add("@id", id);
                         connection.Open();
                         command.ExecuteNonQuery();

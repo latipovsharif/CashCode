@@ -15,8 +15,13 @@ namespace Terminal_Firefox.syncrhonization {
             while (true) {
                 Thread.Sleep(15000);
                 _payment = Payment.GetSingle();
+
+                string preparedCommand = Command.Prepare(CommandTypes.Link, new Link());
+                _communication.SSend(preparedCommand);
+                _lastCommand = CommandTypes.Link;
+
                 if (_payment != null) {
-                    string preparedCommand = Command.Prepare(CommandTypes.Link, _payment);
+                    preparedCommand = Command.Prepare(CommandTypes.Payment, _payment);
                     Command.HandleAnswer(_communication.SSend(preparedCommand));
                     _lastCommand = CommandTypes.Payment;
                 }
