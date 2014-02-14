@@ -3,12 +3,13 @@ using System.Data.SqlServerCe;
 using NLog;
 
 namespace Terminal_Firefox.classes {
-    class Device {
 
-        public enum Devices {
-            CashCode, Printer, CashSum, CashCount, Terminal
-        }
+    public enum Devices {
+        CashCode, Printer, CashSum, CashCount, Terminal
+    }
 
+
+    public class Device {
 
         private static readonly Logger Log = LogManager.GetCurrentClassLogger();
 

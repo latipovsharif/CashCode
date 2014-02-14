@@ -3,6 +3,7 @@ using System.IO.Ports;
 using System.Threading;
 using System.Configuration;
 using NLog;
+using Terminal_Firefox.classes;
 
 namespace Terminal_Firefox.peripheral {
 
@@ -136,68 +137,41 @@ namespace Terminal_Firefox.peripheral {
                 return;
             }
 
-            switch (data[3]) {
-                case (byte) CashCodePollResponces.PowerUp:
-                    Log.Debug("GenericRejectionCodes.PowerUp", data);
+            CashCodePollResponces pollResponce = new CashCodePollResponces();
+            pollResponce = (CashCodePollResponces)data[3];
+
+            switch (pollResponce) {
+                case CashCodePollResponces.PowerUp:
+                case CashCodePollResponces.PowerUpWithBillInValidator:
+                case CashCodePollResponces.PowerUpWithBillInStacker:
+                case CashCodePollResponces.Initialize:
+                case CashCodePollResponces.Holding:
+                case CashCodePollResponces.UnitDisabled:
+                case CashCodePollResponces.Idling:
                     break;
-                case (byte) CashCodePollResponces.PowerUpWithBillInValidator:
-                    Log.Debug("GenericRejectionCodes.PowerUpWithBillInValidator", data);
+                case CashCodePollResponces.Accepting:
+                case CashCodePollResponces.Stacking:
+                case CashCodePollResponces.Returning:
+                case CashCodePollResponces.DeviceBusy:
+                case CashCodePollResponces.DropCasseteFull:
+                case CashCodePollResponces.DropCasseteOutOfPosition:
+                case CashCodePollResponces.ValidatorJammed:
+                case CashCodePollResponces.DropCasseteJammed:
+                case CashCodePollResponces.Cheated:
+                case CashCodePollResponces.Pause:
+                Log.Debug(pollResponce);
                     break;
-                case (byte) CashCodePollResponces.PowerUpWithBillInStacker:
-                    Log.Debug("GenericRejectionCodes.PowerUpWithBillInStacker", data);
-                    break;
-                case (byte) CashCodePollResponces.Initialize:
-                    Log.Debug("GenericRejectionCodes.Initialize", data);
-                    break;
-                case (byte) CashCodePollResponces.Idling:
-                    Log.Debug("GenericRejectionCodes.Idling", data);
-                    break;
-                case (byte) CashCodePollResponces.Accepting:
-                    Log.Debug("GenericRejectionCodes.Accepting", data);
-                    break;
-                case (byte) CashCodePollResponces.Stacking:
-                    Log.Debug("GenericRejectionCodes.Stacking", data);
-                    break;
-                case (byte) CashCodePollResponces.Returning:
-                    Log.Debug("GenericRejectionCodes.Returning", data);
-                    break;
-                case (byte) CashCodePollResponces.UnitDisabled:
-                    Log.Debug("GenericRejectionCodes.UnitDisabled", data);
-                    break;
-                case (byte) CashCodePollResponces.Holding:
-                    Log.Debug("GenericRejectionCodes.Holding", data);
-                    break;
-                case (byte) CashCodePollResponces.DeviceBusy:
-                    Log.Debug("GenericRejectionCodes.DeviceBusy", data);
-                    break;
-                case (byte) CashCodePollResponces.GenericRejecting:
+
+                case CashCodePollResponces.GenericRejecting:
                     RejectionReason(data[4]);
                     break;
-                case (byte) CashCodePollResponces.DropCasseteFull:
-                    Log.Debug("GenericRejectionCodes.DropCasseteFull", data);
-                    break;
-                case (byte) CashCodePollResponces.DropCasseteOutOfPosition:
-                    Log.Debug("GenericRejectionCodes.DropCasseteOutOfPosition", data);
-                    break;
-                case (byte) CashCodePollResponces.ValidatorJammed:
-                    Log.Debug("GenericRejectionCodes.ValidatorJammed", data);
-                    break;
-                case (byte) CashCodePollResponces.DropCasseteJammed:
-                    Log.Debug("GenericRejectionCodes.DropCasseteJammed", data);
-                    break;
-                case (byte) CashCodePollResponces.Cheated:
-                    Log.Debug("GenericRejectionCodes.Cheated", data);
-                    break;
-                case (byte) CashCodePollResponces.Pause:
-                    Log.Debug("GenericRejectionCodes.Pause", data);
-                    break;
-                case (byte) CashCodePollResponces.GenericFailure:
+                case CashCodePollResponces.GenericFailure:
                     FailureReason(data[4]);
                     break;
-                case (byte) CashCodePollResponces.BillStacked:
+                case CashCodePollResponces.BillStacked:
                     FindBillDenomination(data[4], "Принята");
                     break;
-                case (byte) CashCodePollResponces.BillReturned:
+                case CashCodePollResponces.BillReturned:
                     FindBillDenomination(data[4], "Возвращена");
                     break;
             }

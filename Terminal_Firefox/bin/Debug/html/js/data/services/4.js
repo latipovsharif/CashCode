@@ -1,1 +1,1 @@
-var properties = {allowedEntries:['98', '918'], mask: '**-***-**-**', minLength: 5};
+var properties = {allowedEntries:['90'], mask: '**-***-**-**', minLength: 9};

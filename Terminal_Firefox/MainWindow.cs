@@ -23,7 +23,7 @@ namespace Terminal_Firefox {
         private Collector _collector = new Collector();
         private readonly TerminalSettings _terminalSettings = TerminalSettings.Instance;
         private readonly System.Threading.Timer _timer;
-        private const ushort TimerDelay = 3000;
+        private const ushort TimerDelay = 15000;
         private readonly Thread _thrSync;
         private readonly syncrhonization.Synchronization _synchronization = new syncrhonization.Synchronization();
 
@@ -282,15 +282,15 @@ namespace Terminal_Firefox {
 
         private void EnterNumberClick(GeckoElement clicked) {
             try {
-                if (clicked.HasAttribute("id")) {
-                    if (clicked.GetAttribute("id").Equals("next") && !clicked.HasAttribute("disabled")) {
+                if (clicked.HasAttribute("id") && !clicked.HasAttribute("disabled")) {
+                    if (clicked.GetAttribute("id").Equals("next")) {
                         var input = (GeckoInputElement) _browser.Document.GetElementById("number");
                         _payment.nomer = input.Value;
                         _payment.nomer2 = ""; // Todo Проверить наличие поля ввода второго номера и если такого поля нет только потом вставить пустую строку
                         Log.Debug(String.Format("Entered number {0}", input.Value));
                         Util.NavigateTo(_browser, CurrentWindow.Pay);
 
-                    } else if (clicked.GetAttribute("id").Equals("back") && !clicked.HasAttribute("disabled")) {
+                    } else if (clicked.GetAttribute("id").Equals("back")) {
                         _payment.nomer = "";
                         _payment.nomer2 = "";
 
@@ -308,15 +308,15 @@ namespace Terminal_Firefox {
 
         private void PayClick(GeckoElement clicked) {
             try {
-                if (clicked.HasAttribute("id")) {
-                    if (clicked.GetAttribute("id").Equals("next") && !clicked.HasAttribute("disabled")) {
+                if (clicked.HasAttribute("id") && !clicked.HasAttribute("disabled")) {
+                    if (clicked.GetAttribute("id").Equals("next")) {
                         _payment.Save();
                         _payment = new Payment();
                         Util.NavigateTo(_browser, CurrentWindow.Main);
-                    } else if (clicked.GetAttribute("id").Equals("back") && !clicked.HasAttribute("disabled")) {
-                        _cashCode.DisableBillTypes();
+                    } else if (clicked.GetAttribute("id").Equals("back")) {
                         Util.NavigateTo(_browser, CurrentWindow.EnterNumber);
                     }
+                    _cashCode.DisableBillTypes();
                 }
             } catch (Exception exception) {
                 Log.Error(exception);
@@ -326,8 +326,8 @@ namespace Terminal_Firefox {
 
         private void EncashmentClick(GeckoElement clicked) {
             try {
-                if (clicked.HasAttribute("id")) {
-                    if (clicked.GetAttribute("id").Equals("next") && !clicked.HasAttribute("disabled")) {
+                if (clicked.HasAttribute("id") && !clicked.HasAttribute("disabled")) {
+                    if (clicked.GetAttribute("id").Equals("next")) {
                         var login = (GeckoInputElement) _browser.Document.GetElementById("login");
                         var password = (GeckoInputElement) _browser.Document.GetElementById("password");
                         _collector = Collector.FindCollector(login.Value, password.Value);
@@ -337,7 +337,7 @@ namespace Terminal_Firefox {
                         } else {
                             Util.NavigateTo(_browser, CurrentWindow.MakeEncashment);
                         }
-                    } else if (clicked.GetAttribute("id").Equals("back") && !clicked.HasAttribute("disabled")) {
+                    } else if (clicked.GetAttribute("id").Equals("back")) {
                         Util.NavigateTo(_browser, CurrentWindow.Main);
                     }
                 }
@@ -349,9 +349,9 @@ namespace Terminal_Firefox {
 
         private void MakeEncashmentClick(GeckoElement clicked) {
             try {
-                if (clicked.HasAttribute("id")) {
-                    if (clicked.GetAttribute("id").Equals("next") && !clicked.HasAttribute("disabled")) {
-                    } else if (clicked.GetAttribute("id").Equals("back") && !clicked.HasAttribute("disabled")) {
+                if (clicked.HasAttribute("id") && !clicked.HasAttribute("disabled")) {
+                    if (clicked.GetAttribute("id").Equals("next")) {
+                    } else if (clicked.GetAttribute("id").Equals("back")) {
                         Util.NavigateTo(_browser, CurrentWindow.Main);
                     }
                 }

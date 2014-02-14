@@ -95,30 +95,33 @@ namespace Terminal_Firefox.syncrhonization {
 
 
         public string SSend(string body) {
+
             string mes = Encrypt(body, _key) + "</d>";
             string result = "";
+            try {
 
-            byte[] outer = Encoding.UTF8.GetBytes(mes);
-            _serverStream.Write(outer, 0, outer.Length);
-            _serverStream.Flush();
+                byte[] outer = Encoding.UTF8.GetBytes(mes);
+                _serverStream.Write(outer, 0, outer.Length);
+                _serverStream.Flush();
 
-            // Wait before reading data
-            // otherwise data Available 
-            // data amount will not be available
-            Thread.Sleep(1500);
+                // Wait before reading data
+                // otherwise data Available 
+                // data amount will not be available
+                Thread.Sleep(1500);
 
-            int data = _clientStream.Available;
-            if (data > 0) {
-                byte[] read = new byte[data];
-                _serverStream.Read(read, 0, read.Length);
+                int data = _clientStream.Available;
+                if (data > 0) {
+                    byte[] read = new byte[data];
+                    _serverStream.Read(read, 0, read.Length);
 
-                result = Encoding.UTF8.GetString(read);
-                result = result.Substring(0, result.Length - 4);
-                result = Decrypt(result, _key);
+                    result = Encoding.UTF8.GetString(read);
+                    result = result.Substring(0, result.Length - 4);
+                    result = Decrypt(result, _key);
+                }
+            } catch (Exception) {
+                Log.Info("Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!");
+
             }
-
-            Log.Info("Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!");
-            
             return result;
         }
     }

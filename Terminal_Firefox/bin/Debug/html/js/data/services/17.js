@@ -1,0 +1,1 @@
+var properties = {allowedEntries:['Z', 'R'], mask: '*************', minLength: 9}

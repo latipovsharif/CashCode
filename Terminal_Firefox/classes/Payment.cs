@@ -14,19 +14,9 @@ namespace Terminal_Firefox.classes {
         public short summa { get; set; }
         public double summa_zachis { get; set; }
         public long status { get; set; }
-
-        public string date_create {
-            get { return ((Int32)(DateTime.Now.Subtract(new DateTime(1970, 1, 1))).TotalSeconds).ToString();} 
-            set { }
-        }
-
-        public string date_send {get; set; }
-
-        public string id_inkas {
-            get { return TerminalSettings.Instance.TerminalNumber + TerminalSettings.Instance.CollectionId; }
-            set {}
-        }
-
+        public string date_create { get; set; }
+        public string date_send { get; set; }
+        public string id_inkas { get; set; }
         public short val1 { get; set; }
         public short val3 { get; set; }
         public short val5 { get; set; }
@@ -41,8 +31,16 @@ namespace Terminal_Firefox.classes {
         public string chekn { get; private set; }
         public double summa_komissia { get; set; }
         public double rate { get; set; }
+        public string curr { get { return ""; } set { } }
 
-        public string curr {get { return ""; } set { }}
+
+        public Payment() {
+            date_create = ((Int32)(DateTime.Now.Subtract(new DateTime(1970, 1, 1))).TotalSeconds).ToString(); 
+            id_inkas = TerminalSettings.Instance.TerminalNumber + TerminalSettings.Instance.CollectionId;
+            chekn = TerminalSettings.Instance.TerminalNumber + date_create;
+            hesh_id = Guid.NewGuid().ToString();
+        }
+        
 
         public bool Save() {
             try {
@@ -173,7 +171,6 @@ namespace Terminal_Firefox.classes {
                     } catch (Exception exception) {
                         Log.Error("Невозможно обновить статус платежа", exception);
                     } finally { command.Parameters.Clear();}
-
                 }
             }
         }

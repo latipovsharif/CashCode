@@ -1,0 +1,1 @@
+var properties = {allowedEntries:['93', '50'], mask: '**-***-**-**', minLength: 9}
