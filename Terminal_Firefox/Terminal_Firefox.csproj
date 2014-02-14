@@ -62,6 +62,7 @@
     <Compile Include="classes\Collect.cs" />
     <Compile Include="classes\Collector.cs" />
     <Compile Include="classes\Command.cs" />
+    <Compile Include="classes\Device.cs" />
     <Compile Include="classes\Link.cs" />
     <Compile Include="classes\Message.cs" />
     <Compile Include="classes\Payment.cs" />

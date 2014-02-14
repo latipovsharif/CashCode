@@ -4,6 +4,6 @@
         public string login { get; set; }
         public string passw { get; set; }
         public string body { get; set; }
-        public string ver { get { return "3.8"; }  set { }}
+        public string ver { get { return "0.1"; }  set { }}
     }
 }

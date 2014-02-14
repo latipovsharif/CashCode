@@ -96,6 +96,25 @@ body {
     background: url('../ru/button_back_dis.png'), transparent;
 }
 
+.centerBtn
+{
+    border: none;
+    width: 221px;
+    height: 93px;
+    background: url('../ru/button_back.png'), transparent;
+    float:left;
+    margin-left: 530px;
+}
+
+.centerBtn:active {
+    background: url('../ru/button_back_off.png'), transparent;
+}
+
+.centerBtn:disabled{
+    background: url('../ru/button_back_dis.png'), transparent;
+}
+
+
 .navigation 
 {
     position: absolute;
@@ -106,10 +125,7 @@ body {
     z-index: -10;
 }
 
-.centerBtn
-{
-    margin-left: 530px;
-}
+
 
 .numbers
 {

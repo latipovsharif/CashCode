@@ -1,8 +1,0 @@
-02/13/2014 09:09:12|Fatal|Невозможно открыть порт com1|Terminal_Firefox.peripheral.CashCode..ctor
-02/13/2014 10:59:41|Error|System.NullReferenceException: Object reference not set to an instance of an object.
-   at Terminal_Firefox.MainWindow.SetAmount(Int16 banknote) in D:\development\vs\Terminal_Firefox\Terminal_Firefox\MainWindow.cs:line 134|Terminal_Firefox.MainWindow.SetAmount
-02/13/2014 11:48:26|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-02/13/2014 11:49:50|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-02/13/2014 11:50:32|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-02/13/2014 11:51:43|Fatal|System.UnhandledExceptionEventArgs|Terminal_Firefox.Program.CurrentDomainUnhandledException
-02/13/2014 11:53:51|Error|Невозможно обновить статус платежа|Terminal_Firefox.classes.Payment.FinishPayment

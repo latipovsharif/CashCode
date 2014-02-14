@@ -5,6 +5,7 @@ using NLog;
 
 namespace Terminal_Firefox.Utils {
 
+    
     /// <summary>
     /// Типы команд
     /// </summary>

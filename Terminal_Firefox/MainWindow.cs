@@ -153,6 +153,7 @@ namespace Terminal_Firefox {
                 switch (_currentWindow) {
                     case (int) CurrentWindow.Main:
                         toAppend = _terminalSettings.GetSettings();
+                        _payment = new Payment();
                         Log.Debug(String.Format("Current window id is {0}", CurrentWindow.Main));
                         break;
 
@@ -265,9 +266,13 @@ namespace Terminal_Firefox {
         private void DependentClick(GeckoElement clicked) {
             try {
                 if (clicked.HasAttribute("id")) {
-                    _payment.id_uslugi = short.Parse(clicked.GetAttribute("id"));
-                    Log.Debug(String.Format("Clicked service with id {0}", clicked.GetAttribute("id")));
-                    Util.NavigateTo(_browser, CurrentWindow.EnterNumber);
+                    if (clicked.GetAttribute("id").Equals("back")){
+                        Util.NavigateTo(_browser, CurrentWindow.Main);
+                    } else {
+                        _payment.id_uslugi = short.Parse(clicked.GetAttribute("id"));
+                        Log.Debug(String.Format("Clicked service with id {0}", clicked.GetAttribute("id")));
+                        Util.NavigateTo(_browser, CurrentWindow.EnterNumber);
+                    }
                 }
             } catch (Exception exception) {
                 Log.Error(exception);
