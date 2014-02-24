@@ -95,10 +95,10 @@ namespace Terminal_Firefox.syncrhonization {
 
 
         public string SSend(string body) {
-
-            string mes = Encrypt(body, _key) + "</d>";
             string result = "";
+
             try {
+                string mes = Encrypt(body, _key) + "</d>";
 
                 byte[] outer = Encoding.UTF8.GetBytes(mes);
                 _serverStream.Write(outer, 0, outer.Length);
@@ -120,7 +120,6 @@ namespace Terminal_Firefox.syncrhonization {
                 }
             } catch (Exception) {
                 Log.Info("Недостаточно времени для ожидания ответа от сервера либо сервер не вернул данные!");
-
             }
             return result;
         }

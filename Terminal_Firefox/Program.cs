@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Windows.Forms;
 using Gecko;
 using NLog;
@@ -14,17 +15,22 @@ namespace Terminal_Firefox {
         [STAThread]
         private static void Main() {
 
-            Log.Info("Запуск приложения...");
+            try {
+                Log.Info("Запуск приложения...");
 
-            Xpcom.Initialize(@"xul");
+                Xpcom.Initialize(@"xul");
 
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
 
-            Application.ThreadException += ApplicationThreadException;
-            AppDomain.CurrentDomain.UnhandledException += CurrentDomainUnhandledException;
+                Application.ThreadException += new ThreadExceptionEventHandler(ApplicationThreadException);
+                AppDomain.CurrentDomain.UnhandledException += CurrentDomainUnhandledException;
 
-            Application.Run(new MainWindow());
+                Application.Run(new MainWindow());
+
+            } catch (Exception exception) {
+                Log.Fatal(exception);
+            }
         }
 
         private static void CurrentDomainUnhandledException(object sender, UnhandledExceptionEventArgs e) {

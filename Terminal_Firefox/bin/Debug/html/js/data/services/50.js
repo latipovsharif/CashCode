@@ -1,1 +1,1 @@
-var properties = {allowedEntries:[], mask: '***-******', minLength: 3}
+var properties = {allowedEntries:['201'], mask: '***-******', minLength: 3}

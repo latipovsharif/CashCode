@@ -15,6 +15,7 @@ namespace Terminal_Firefox.classes {
 
 
         public static void SetDeviceState(Devices device, string state) {
+            try {
             using (SqlCeConnection connection = new SqlCeConnection()) {
                 connection.ConnectionString = DBWrapper.ConnectionString;
                 using (SqlCeCommand command = new SqlCeCommand()) {
@@ -29,6 +30,10 @@ namespace Terminal_Firefox.classes {
                         Log.Error("Невозможно обновить статус устройства", exception);
                     } finally { command.Parameters.Clear(); }
                 }
+            }
+
+            } catch (Exception exception) {
+                Log.Error(exception);                
             }
         }
     }

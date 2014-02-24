@@ -35,10 +35,15 @@ namespace Terminal_Firefox.classes {
 
 
         public Payment() {
+            try {
             date_create = ((Int32)(DateTime.Now.Subtract(new DateTime(1970, 1, 1))).TotalSeconds).ToString(); 
             id_inkas = TerminalSettings.Instance.TerminalNumber + TerminalSettings.Instance.CollectionId;
             chekn = TerminalSettings.Instance.TerminalNumber + date_create;
             hesh_id = Guid.NewGuid().ToString();
+
+            } catch (Exception exception) {
+                Log.Error(exception);
+            }
         }
         
 
@@ -83,72 +88,79 @@ namespace Terminal_Firefox.classes {
         /// <returns>Возвращает объект Payment с незавершенным статусом</returns>
         public static Payment GetSingle() {
             Payment result = null;
-            using (SqlCeConnection connection = new SqlCeConnection()) {
-                using (SqlCeCommand command = new SqlCeCommand()) {
 
-                    connection.ConnectionString = DBWrapper.ConnectionString;
-                    command.Connection = connection;
-                    connection.Open();
-                    command.CommandText = "SELECT TOP(1) id, service_id, number, sec_number, [check], date_create,  " +
-                                          "sum, comission, hash, n1, n3, n5, n10, n20, n50, " +
-                                          "n100, n200, n500, rate, curr FROM payments WHERE state = 0";
-                    using (SqlCeDataReader reader = command.ExecuteReader()) {
-                        while (reader.Read()) {
-                            result = new Payment {
-                                                     id = Int32.Parse(reader[0].ToString()),
-                                                     nomer = reader[2].ToString(),
-                                                     nomer2 = reader[3].ToString(),
-                                                     chekn = reader[4].ToString(),
-                                                     date_create = reader[5].ToString(),
-                                                     hesh_id = reader[8].ToString(),
-                                                     curr = reader[19].ToString(),
-                                                 };
-                            short idUslugi, sum, val1, val3, val5, val10, val20, val50, val100, val200, val500;
-                            double commission, rate;
+            try {
+                using (SqlCeConnection connection = new SqlCeConnection()) {
+                    using (SqlCeCommand command = new SqlCeCommand()) {
 
-                            Int16.TryParse(reader[1].ToString(), out idUslugi);
-                            result.id_uslugi = idUslugi;
+                        connection.ConnectionString = DBWrapper.ConnectionString;
+                        command.Connection = connection;
+                        connection.Open();
+                        command.CommandText =
+                            "SELECT TOP(1) id, service_id, number, sec_number, [check], date_create,  " +
+                            "sum, comission, hash, n1, n3, n5, n10, n20, n50, " +
+                            "n100, n200, n500, rate, curr FROM payments WHERE state = 0";
+                        using (SqlCeDataReader reader = command.ExecuteReader()) {
+                            while (reader.Read()) {
+                                result = new Payment {
+                                                         id = Int32.Parse(reader[0].ToString()),
+                                                         nomer = reader[2].ToString(),
+                                                         nomer2 = reader[3].ToString(),
+                                                         chekn = reader[4].ToString(),
+                                                         date_create = reader[5].ToString(),
+                                                         hesh_id = reader[8].ToString(),
+                                                         curr = reader[19].ToString(),
+                                                     };
+                                short idUslugi, sum, val1, val3, val5, val10, val20, val50, val100, val200, val500;
+                                double commission, rate;
 
-                            Int16.TryParse(reader[6].ToString(), out sum);
-                            result.summa = sum;
+                                Int16.TryParse(reader[1].ToString(), out idUslugi);
+                                result.id_uslugi = idUslugi;
 
-                            double.TryParse(reader[7].ToString(), out commission);
-                            result.summa_komissia = commission;
+                                Int16.TryParse(reader[6].ToString(), out sum);
+                                result.summa = sum;
 
-                            Int16.TryParse(reader[9].ToString(), out val1);
-                            result.val1 = val1;
+                                double.TryParse(reader[7].ToString(), out commission);
+                                result.summa_komissia = commission;
 
-                            Int16.TryParse(reader[10].ToString(), out val3);
-                            result.val3 = val3;
+                                Int16.TryParse(reader[9].ToString(), out val1);
+                                result.val1 = val1;
 
-                            Int16.TryParse(reader[11].ToString(), out val5);
-                            result.val5 = val5;
+                                Int16.TryParse(reader[10].ToString(), out val3);
+                                result.val3 = val3;
 
-                            Int16.TryParse(reader[12].ToString(), out val10);
-                            result.val10 = val10;
+                                Int16.TryParse(reader[11].ToString(), out val5);
+                                result.val5 = val5;
 
-                            Int16.TryParse(reader[13].ToString(), out val20);
-                            result.val20 = val20;
+                                Int16.TryParse(reader[12].ToString(), out val10);
+                                result.val10 = val10;
 
-                            Int16.TryParse(reader[14].ToString(), out val50);
-                            result.val50 = val50;
+                                Int16.TryParse(reader[13].ToString(), out val20);
+                                result.val20 = val20;
 
-                            Int16.TryParse(reader[15].ToString(), out val100);
-                            result.val100 = val100;
+                                Int16.TryParse(reader[14].ToString(), out val50);
+                                result.val50 = val50;
 
-                            Int16.TryParse(reader[16].ToString(), out val200);
-                            result.val200 = val200;
+                                Int16.TryParse(reader[15].ToString(), out val100);
+                                result.val100 = val100;
 
-                            Int16.TryParse(reader[17].ToString(), out val500);
-                            result.val500 = val500;
+                                Int16.TryParse(reader[16].ToString(), out val200);
+                                result.val200 = val200;
 
-                            double.TryParse(reader[18].ToString(), out rate);
-                            result.rate = rate;
+                                Int16.TryParse(reader[17].ToString(), out val500);
+                                result.val500 = val500;
 
-                            result.summa_zachis = sum - commission;
+                                double.TryParse(reader[18].ToString(), out rate);
+                                result.rate = rate;
+
+                                result.summa_zachis = sum - commission;
+                            }
                         }
                     }
                 }
+
+            } catch (Exception exception) {
+                Log.Error(exception);
             }
             return result;
         }
@@ -159,19 +171,26 @@ namespace Terminal_Firefox.classes {
         /// </summary>
         /// <param name="id">Номер транзакции</param>
         public static void FinishPayment(string id) {
-            using (SqlCeConnection connection = new SqlCeConnection()) {
-                connection.ConnectionString = DBWrapper.ConnectionString;
-                using (SqlCeCommand command = new SqlCeCommand()) {
-                    try {
-                        command.Connection = connection;
-                        command.CommandText = "update payments set state = 1 where hash = @id";
-                        command.Parameters.Add("@id", id);
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    } catch (Exception exception) {
-                        Log.Error("Невозможно обновить статус платежа", exception);
-                    } finally { command.Parameters.Clear();}
+            try {
+                using (SqlCeConnection connection = new SqlCeConnection()) {
+                    connection.ConnectionString = DBWrapper.ConnectionString;
+                    using (SqlCeCommand command = new SqlCeCommand()) {
+                        try {
+                            command.Connection = connection;
+                            command.CommandText = "update payments set state = 1 where hash = @id";
+                            command.Parameters.Add("@id", id);
+                            connection.Open();
+                            command.ExecuteNonQuery();
+                        } catch (Exception exception) {
+                            Log.Error("Невозможно обновить статус платежа", exception);
+                        } finally {
+                            command.Parameters.Clear();
+                        }
+                    }
                 }
+
+            } catch (Exception exception) {
+                Log.Error(exception);
             }
         }
     }

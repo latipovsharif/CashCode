@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Data.SqlServerCe;
 using NLog;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Terminal_Firefox.classes {
     public class TerminalSettings {
