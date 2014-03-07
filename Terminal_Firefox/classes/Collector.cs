@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.SQLite;
 using NLog;
 
 namespace Terminal_Firefox.classes {
@@ -13,12 +14,19 @@ namespace Terminal_Firefox.classes {
         public static Collector FindCollector(string login, string password) {
             var collector = new Collector();
             try {
-                DBWrapper.Instance.Command.CommandText =
-                    "select id from collector where login=@login and pass=@password";
-                DBWrapper.Instance.Command.Parameters.Add("@login", login);
-                DBWrapper.Instance.Command.Parameters.Add("@password", password);
 
-                int.TryParse(DBWrapper.Instance.Command.ExecuteScalar().ToString(), out collector.Id);
+                using (SQLiteConnection connection = new SQLiteConnection(SQLiteDatabase.DbConnection)) {
+                    connection.Open();
+                    using (SQLiteCommand command = new SQLiteCommand()) {
+                        command.CommandText = "select id from collector where login=@login and pass=@password";
+                        
+                        command.Parameters.Add(new SQLiteParameter("@login", login));
+                        command.Parameters.Add(new SQLiteParameter("@password", password));
+
+                        int.TryParse(command.ExecuteScalar().ToString(), out collector.Id);
+
+                    }
+                }
 
                 if (collector.Id > 0) {
                     collector.passw = password;
@@ -27,9 +35,8 @@ namespace Terminal_Firefox.classes {
                 }
             } catch (Exception exception) {
                 Log.Error(String.Format("Невозможно получить инкассатора с логином {0} и паролем {1}", login, password), exception);
-            } finally {
-                DBWrapper.Instance.Command.Parameters.Clear();
-            }
+            } 
+
             return collector;
         }
     }

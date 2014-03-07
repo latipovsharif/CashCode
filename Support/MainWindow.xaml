@@ -1,0 +1,12 @@
+﻿<Window x:Class="Support.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="MainWindow" Height="1024" Width="1280" WindowStyle="None" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" Margin="12,265,343,12" Name="encashmentDataGrid" x:FieldModifier="private" DataContext="{Binding}" ItemsSource="{Binding}" CanUserReorderColumns="False" CanUserResizeColumns="False" CanUserResizeRows="False" IsReadOnly="True" SelectionChanged="EncashmentDataGridSelectionChanged" RowHeight="30" />
+        <Label Height="708" HorizontalAlignment="Right" Margin="0,265,12,0" Name="checkPreview" VerticalAlignment="Top" Width="325" VerticalContentAlignment="Center" HorizontalContentAlignment="Center" />
+        <Button Content="Выход" Height="96" HorizontalAlignment="Left" Margin="12,12,0,0" Name="button1" VerticalAlignment="Top" Width="218" Click="ExitButtonClick" />
+        <Button Content="Распечатать чек" Height="96" HorizontalAlignment="Left" Margin="236,12,0,0" Name="button2" VerticalAlignment="Top" Width="218" Click="PrintCheckButtonClick" />
+        <Button Content="Произвести инкассацию" Height="96" HorizontalAlignment="Left" Margin="460,12,0,0" Name="button3" VerticalAlignment="Top" Width="218" Click="MakeCollectionButtonClick" />
+    </Grid>
+</Window>

@@ -103,5 +103,9 @@ namespace Terminal_Firefox.Utils {
                 Log.Error(exception);
             }
         }
+		
+		public static string GetCurrentTimestamp() {
+            return ((Int32) (DateTime.Now.Subtract(new DateTime(1970, 1, 1))).TotalSeconds).ToString();
+        }
     }
 }

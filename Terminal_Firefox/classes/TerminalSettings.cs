@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.SqlServerCe;
+using System.Data.SQLite;
 using NLog;
 
 namespace Terminal_Firefox.classes {
@@ -21,36 +21,41 @@ namespace Terminal_Firefox.classes {
 
         private TerminalSettings() {
             try {
-
-                DBWrapper.Instance.Command.CommandText = "select variable, value from settings";
-                SqlCeDataReader reader = DBWrapper.Instance.Command.ExecuteReader();
-                while (reader.Read()) {
-                    switch (reader[0].ToString()) {
-                        case "current_collect_id":
-                            try {
-                                CollectionId = reader[1].ToString();
-                            } catch (Exception exception) {
-                                Log.Error("Could not get collection id", exception);
+                using (SQLiteConnection connection = new SQLiteConnection(SQLiteDatabase.DbConnection)) {
+                    using (SQLiteCommand command = new SQLiteCommand()) {
+                        command.Connection = connection;
+                        command.CommandText = "select variable, value from settings";
+                        connection.Open();
+                        SQLiteDataReader reader = command.ExecuteReader();
+                        while (reader.Read()) {
+                            switch (reader[0].ToString()) {
+                                case "current_collect_id":
+                                    try {
+                                        CollectionId = reader[1].ToString();
+                                    } catch (Exception exception) {
+                                        Log.Error("Could not get collection id", exception);
+                                    }
+                                    break;
+                                case "terminal_address":
+                                    AddressRu = reader[1].ToString();
+                                    break;
+                                case "terminal_number":
+                                    TerminalNumber = reader[1].ToString();
+                                    break;
+                                case "terminal_password":
+                                    TerminalPassword = reader[1].ToString();
+                                    break;
+                                case "terminal_id": // Todo delete if doesn't need it
+                                    break;
+                                case "call_center_phone":
+                                    CallCenter = reader[1].ToString();
+                                    break;
                             }
-                            break;
-                        case "terminal_address":
-                            AddressRu = reader[1].ToString();
-                            break;
-                        case "terminal_number":
-                            TerminalNumber = reader[1].ToString();
-                            break;
-                        case "terminal_password":
-                            TerminalPassword = reader[1].ToString();
-                            break;
-                        case "terminal_id": // Todo delete if doesn't need it
-                            break;
-                        case "call_center_phone":
-                            CallCenter = reader[1].ToString();
-                            break;
+                        }
                     }
                 }
-            } catch (Exception) {
-                Log.Fatal("Невозможно считать настройки терминала");
+            } catch (Exception exception) {
+                Log.Fatal("Невозможно считать настройки терминала", exception);
             }
         }
 

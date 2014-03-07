@@ -1,0 +1,54 @@
+﻿<Window x:Class="Support.LoginForm"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="LoginForm" Height="1024" Width="1280" WindowState="Maximized" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="92*" />
+            <ColumnDefinition Width="1166*" />
+        </Grid.ColumnDefinitions>
+        <Button Content="Q" Height="68" HorizontalAlignment="Left" Margin="167,0,0,383" Name="button1" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="J" Height="68" HorizontalAlignment="Left" Margin="702,0,0,309" Name="button2" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="H" Height="68" HorizontalAlignment="Left" Margin="620,0,0,309" Name="button3" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="G" Height="68" HorizontalAlignment="Left" Margin="538,0,0,309" Name="button4" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="F" Height="68" HorizontalAlignment="Left" Margin="456,0,0,309" Name="button5" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="D" Height="68" HorizontalAlignment="Left" Margin="374,0,0,309" Name="button6" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="S" Height="68" HorizontalAlignment="Left" Margin="292,0,0,309" Name="button7" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="A" Height="68" HorizontalAlignment="Left" Margin="210,0,0,309" Name="button8" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="P" Height="68" HorizontalAlignment="Left" Margin="905,0,0,383" Name="button12" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="O" Height="68" HorizontalAlignment="Left" Margin="823,0,0,383" Name="button13" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="I" Height="68" HorizontalAlignment="Left" Margin="741,0,0,383" Name="button14" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="U" Height="68" HorizontalAlignment="Left" Margin="659,0,0,383" Name="button15" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="Y" Height="68" HorizontalAlignment="Left" Margin="577,0,0,383" Name="button16" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="T" Height="68" HorizontalAlignment="Left" Margin="495,0,0,383" Name="button17" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="R" Height="68" HorizontalAlignment="Left" Margin="413,0,0,383" Name="button18" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="E" Height="68" HorizontalAlignment="Left" Margin="331,0,0,383" Name="button19" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="W" Height="68" HorizontalAlignment="Left" Margin="249,0,0,383" Name="button20" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="L" Height="68" HorizontalAlignment="Left" Margin="866,0,0,309" Name="button25" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="K" Height="68" HorizontalAlignment="Left" Margin="784,0,0,309" Name="button26" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="M" Height="68" HorizontalAlignment="Left" Margin="741,0,0,235" Name="button21" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="N" Height="68" HorizontalAlignment="Left" Margin="659,0,0,235" Name="button27" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="B" Height="68" HorizontalAlignment="Left" Margin="577,0,0,235" Name="button28" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="V" Height="68" HorizontalAlignment="Left" Margin="495,0,0,235" Name="button29" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="C" Height="68" HorizontalAlignment="Left" Margin="413,0,0,235" Name="button30" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="X" Height="68" HorizontalAlignment="Left" Margin="331,0,0,235" Name="button31" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="Z" Height="68" HorizontalAlignment="Left" Margin="249,0,0,235" Name="button32" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="1" Margin="125,0,0,457" Name="button9" HorizontalAlignment="Left" Width="76" Height="68" VerticalAlignment="Bottom" Click="BtnClick" Grid.Column="1" />
+        <Button Content="&lt;-" Height="68" Margin="948,0,0,457" Name="button10" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="0" Height="68" HorizontalAlignment="Left" Margin="866,0,0,457" Name="button22" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="9" Height="68" HorizontalAlignment="Left" Margin="784,0,0,457" Name="button23" VerticalAlignment="Bottom" Width="76" Click="BtnClick" Grid.Column="1" />
+        <Button Content="8" Margin="702,0,0,457" Name="button24" HorizontalAlignment="Left" Width="76" Height="68" VerticalAlignment="Bottom" Click="BtnClick" Grid.Column="1" />
+        <Button Content="7" Margin="620,0,0,457" Name="button33" HorizontalAlignment="Left" Width="76" Height="68" VerticalAlignment="Bottom" Click="BtnClick" Grid.Column="1" />
+        <Button Content="6" Margin="538,0,0,457" Name="button34" HorizontalAlignment="Left" Width="76" Height="68" VerticalAlignment="Bottom" Click="BtnClick" Grid.Column="1" />
+        <Button Content="5" Margin="456,0,0,457" Name="button35" HorizontalAlignment="Left" Width="76" Height="68" VerticalAlignment="Bottom" Click="BtnClick" Grid.Column="1" />
+        <Button Content="4" Margin="374,0,0,457" Name="button36" HorizontalAlignment="Left" Width="76" Height="68" VerticalAlignment="Bottom" Click="BtnClick" Grid.Column="1" />
+        <Button Content="3" Margin="292,0,0,457" Name="button37" HorizontalAlignment="Left" Width="76" Height="68" VerticalAlignment="Bottom" Click="BtnClick" Grid.Column="1" />
+        <Button Content="2" Margin="210,0,0,457" Name="button38" Height="68" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="76" Click="BtnClick" Grid.Column="1" />
+        <PasswordBox Height="37" HorizontalAlignment="Right" Margin="0,0,306,581" Name="password" VerticalAlignment="Bottom" Width="190" GotFocus="PasswordBox1GotFocus" Grid.Column="1" />
+        <TextBox Height="37" HorizontalAlignment="Left" Margin="319,0,0,581" Name="login" VerticalAlignment="Bottom" Width="180" GotFocus="TextBox1GotFocus" Grid.Column="1" />
+        <Button Content="Назад" Height="69" HorizontalAlignment="Left" Margin="71,0,0,81" Name="button39" VerticalAlignment="Bottom" Width="206" Click="BtnBackClick" Grid.ColumnSpan="2" />
+        <Button Content="Далее" Height="69" HorizontalAlignment="Right" Margin="0,0,73,81" Name="button11" VerticalAlignment="Bottom" Width="206" Click="BtnNextClick" Grid.Column="1" />
+        <Label Content="Логин" Height="37" HorizontalAlignment="Left" Margin="249,0,0,581" Name="label1" VerticalAlignment="Bottom" Width="53" Grid.Column="1" />
+        <Label Content="Пароль" Height="37" HorizontalAlignment="Left" Margin="599,0,0,581" Name="label2" VerticalAlignment="Bottom" Width="65" Grid.Column="1" />
+    </Grid>
+</Window>

@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Data.SqlServerCe;
+using System.Data.SQLite;
 using NLog;
 
 namespace Terminal_Firefox.classes {
@@ -49,34 +49,38 @@ namespace Terminal_Firefox.classes {
 
         public bool Save() {
             try {
-                DBWrapper.Instance.Command.CommandText =
-                    "INSERT INTO payments (service_id, number, sec_number, [check], date_create,  sum, comission, hash, state, n1, n3, n5, n10, n20, n50, n100, n200, n500, rate, curr) " +
+                using (SQLiteConnection connection = new SQLiteConnection(SQLiteDatabase.DbConnection)) {
+                    using (SQLiteCommand command = new SQLiteCommand()) {
+                        command.Connection = connection;
+                        connection.Open();
+                        command.CommandText = "INSERT INTO payments (service_id, number, sec_number, [check], date_create,  sum, comission, hash, state, n1, n3, n5, n10, n20, n50, n100, n200, n500, rate, curr) " +
                     "VALUES(@service, @number, @sec_number, @check, @date_create, @sum, @comission, @hash, 0, @n1, @n3, @n5, @n10, @n20, @n50, @n100, @n200, @n500, @rate, @curr);";
-                DBWrapper.Instance.Command.Parameters.Add("@service", id_uslugi);
-                DBWrapper.Instance.Command.Parameters.Add("@number", nomer);
-                DBWrapper.Instance.Command.Parameters.Add("@sec_number", nomer2);
-                DBWrapper.Instance.Command.Parameters.Add("@check", chekn);
-                DBWrapper.Instance.Command.Parameters.Add("@date_create", date_create);
-                DBWrapper.Instance.Command.Parameters.Add("@sum", summa);
-                DBWrapper.Instance.Command.Parameters.Add("@comission", summa_komissia);
-                DBWrapper.Instance.Command.Parameters.Add("@hash", hesh_id);
-                DBWrapper.Instance.Command.Parameters.Add("@n1", val1);
-                DBWrapper.Instance.Command.Parameters.Add("@n3", val3);
-                DBWrapper.Instance.Command.Parameters.Add("@n5", val5);
-                DBWrapper.Instance.Command.Parameters.Add("@n10", val10);
-                DBWrapper.Instance.Command.Parameters.Add("@n20", val20);
-                DBWrapper.Instance.Command.Parameters.Add("@n50", val50);
-                DBWrapper.Instance.Command.Parameters.Add("@n100", val100);
-                DBWrapper.Instance.Command.Parameters.Add("@n200", val200);
-                DBWrapper.Instance.Command.Parameters.Add("@n500", val500);
-                DBWrapper.Instance.Command.Parameters.Add("@rate", rate);
-                DBWrapper.Instance.Command.Parameters.Add("@curr", curr);
-                DBWrapper.Instance.Command.ExecuteNonQuery();
+                        command.Parameters.Add(new SQLiteParameter("@service", id_uslugi));
+                        command.Parameters.Add(new SQLiteParameter("@number", nomer));
+                        command.Parameters.Add(new SQLiteParameter("@sec_number", nomer2));
+                        command.Parameters.Add(new SQLiteParameter("@check", chekn));
+                        command.Parameters.Add(new SQLiteParameter("@date_create", date_create));
+                        command.Parameters.Add(new SQLiteParameter("@sum", summa));
+                        command.Parameters.Add(new SQLiteParameter("@comission", summa_komissia));
+                        command.Parameters.Add(new SQLiteParameter("@hash", hesh_id));
+                        command.Parameters.Add(new SQLiteParameter("@n1", val1));
+                        command.Parameters.Add(new SQLiteParameter("@n3", val3));
+                        command.Parameters.Add(new SQLiteParameter("@n5", val5));
+                        command.Parameters.Add(new SQLiteParameter("@n10", val10));
+                        command.Parameters.Add(new SQLiteParameter("@n20", val20));
+                        command.Parameters.Add(new SQLiteParameter("@n50", val50));
+                        command.Parameters.Add(new SQLiteParameter("@n100", val100));
+                        command.Parameters.Add(new SQLiteParameter("@n200", val200));
+                        command.Parameters.Add(new SQLiteParameter("@n500", val500));
+                        command.Parameters.Add(new SQLiteParameter("@rate", rate));
+                        command.Parameters.Add(new SQLiteParameter("@curr", curr));
+                        command.ExecuteNonQuery();
+
+                    }
+                }
             } catch (Exception ex) {
                 Log.Fatal("Невозможно сохранить данные по платежу", ex);
                 return false;
-            } finally {
-                DBWrapper.Instance.Command.Parameters.Clear();
             }
             return true;
         }
@@ -90,27 +94,29 @@ namespace Terminal_Firefox.classes {
             Payment result = null;
 
             try {
-                using (SqlCeConnection connection = new SqlCeConnection()) {
-                    using (SqlCeCommand command = new SqlCeCommand()) {
+                using (SQLiteConnection connection = new SQLiteConnection()) {
+                    using (SQLiteCommand command = new SQLiteCommand()) {
 
-                        connection.ConnectionString = DBWrapper.ConnectionString;
+                        connection.ConnectionString = SQLiteDatabase.DbConnection;
                         command.Connection = connection;
                         connection.Open();
                         command.CommandText =
-                            "SELECT TOP(1) id, service_id, number, sec_number, [check], date_create,  " +
+                            "SELECT id, service_id, number, sec_number, [check], date_create,  " +
                             "sum, comission, hash, n1, n3, n5, n10, n20, n50, " +
-                            "n100, n200, n500, rate, curr FROM payments WHERE state = 0";
-                        using (SqlCeDataReader reader = command.ExecuteReader()) {
+                            "n100, n200, n500, rate, curr FROM payments WHERE state = 0 LIMIT 1";
+                        using (SQLiteDataReader reader = command.ExecuteReader()) {
                             while (reader.Read()) {
                                 result = new Payment {
                                                          id = Int32.Parse(reader[0].ToString()),
                                                          nomer = reader[2].ToString(),
                                                          nomer2 = reader[3].ToString(),
                                                          chekn = reader[4].ToString(),
-                                                         date_create = reader[5].ToString(),
                                                          hesh_id = reader[8].ToString(),
                                                          curr = reader[19].ToString(),
                                                      };
+                                
+                                result.date_create = reader[5].ToString();
+
                                 short idUslugi, sum, val1, val3, val5, val10, val20, val50, val100, val200, val500;
                                 double commission, rate;
 
@@ -172,13 +178,13 @@ namespace Terminal_Firefox.classes {
         /// <param name="id">Номер транзакции</param>
         public static void FinishPayment(string id) {
             try {
-                using (SqlCeConnection connection = new SqlCeConnection()) {
-                    connection.ConnectionString = DBWrapper.ConnectionString;
-                    using (SqlCeCommand command = new SqlCeCommand()) {
+                using (SQLiteConnection connection = new SQLiteConnection()) {
+                    connection.ConnectionString = SQLiteDatabase.DbConnection;
+                    using (SQLiteCommand command = new SQLiteCommand()) {
                         try {
                             command.Connection = connection;
                             command.CommandText = "update payments set state = 1 where hash = @id";
-                            command.Parameters.Add("@id", id);
+                            command.Parameters.Add(new SQLiteParameter("@id", id));
                             connection.Open();
                             command.ExecuteNonQuery();
                         } catch (Exception exception) {
