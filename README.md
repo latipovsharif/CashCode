@@ -19,7 +19,7 @@ This is a test pos terminal implemetation with CashCode class
 
 ### Contribution guidelines ###
 
-* Writing tests
+* Writing tests (This project haven't any tests so if someone will write them that would be cool)
 * Code review
 * Other guidelines
 
